@@ -9,7 +9,7 @@ Legs (each one call, up to 1,000 rows, posted ctx.since..today):
   * title keywords.
 Keys without a SAM.gov role are limited to ~10 calls/day, so the leg list is
 kept short (MAX_CALLS). Award notices (ptype a) get notice_type="award".
-Not live-tested here (no key in this environment, 13 Nov 2026).
+Live-tested 13 Nov 2026 with a key sent as the X-Api-Key header.
 """
 import os
 
@@ -32,18 +32,20 @@ def _us(d):
 
 def fetch(ctx: RunContext) -> PortalResult:
     res = PortalResult(portal=PORTAL.key)
-    key = os.environ.get("SAM_API_KEY", "").strip()
-    if not key:
-        res.errors.append("SAM_API_KEY not set: register free key at api.data.gov")
-        return res
+    # The real key is normally injected into the X-Api-Key header by the environment's
+    # credential store (network secret for api.sam.gov); SAM_API_KEY overrides it locally.
+    key = os.environ.get("SAM_API_KEY", "").strip() or "injected-by-proxy"
     seen = {}
     for field, value in LEGS[:MAX_CALLS]:
         try:
-            r = get(API, params={"api_key": key, "postedFrom": _us(ctx.since), "postedTo": _us(ctx.today),
+            r = get(API, headers={"X-Api-Key": key}, params={"postedFrom": _us(ctx.since), "postedTo": _us(ctx.today),
                                  field: value, "limit": 1000, "offset": 0}, timeout=max(ctx.timeout, 60))
             res.queries += 1
             if r.status_code == 429:
                 res.errors.append(f"{field}={value}: HTTP 429 (daily key quota used)")
+                break
+            if r.status_code in (401, 403):
+                res.errors.append(f"HTTP {r.status_code}: SAM key missing or rejected (store it as a network secret for api.sam.gov)")
                 break
             if r.status_code != 200:
                 res.errors.append(f"{field}={value}: HTTP {r.status_code}: {r.text[:200]}")
