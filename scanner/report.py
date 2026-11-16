@@ -100,30 +100,187 @@ def write_reports(rec: dict, out: Path):
         md += [f"- {x}" for x in bad]
     (out / "report.md").write_text("\n".join(md))
 
+    write_xlsx(rec, out)
+
+
+COUNTRY = {"GR": "Greece", "FR": "France", "NL": "Netherlands", "DEU": "Germany", "DE": "Germany", "SWE": "Sweden",
+           "FIN": "Finland", "FI": "Finland", "BEL": "Belgium", "PL": "Poland", "DK": "Denmark", "ESP": "Spain",
+           "FRA": "France", "GRC": "Greece", "POL": "Poland", "NLD": "Netherlands", "DNK": "Denmark", "NOR": "Norway",
+           "IRL": "Ireland", "ITA": "Italy", "PRT": "Portugal", "AUT": "Austria", "CZE": "Czechia", "ROU": "Romania",
+           "GBR": "United Kingdom", "UK": "United Kingdom", "CHE": "Switzerland", "BGR": "Bulgaria", "EST": "Estonia",
+           "LTU": "Lithuania", "LVA": "Latvia", "HUN": "Hungary", "SVK": "Slovakia", "SVN": "Slovenia", "HRV": "Croatia"}
+WHY = {"strong": "Geophysical survey wording",
+       "combo": "Airborne wording plus geophysics wording",
+       "licence": "Data licence plus geophysics wording"}
+STATUS_EN = {
+    "new": "New - likely airborne",
+    "review": "New - geophysics but not airborne (skim)",
+    "deadline_changed": "Deadline changed",
+    "possible_duplicate": "Possible re-tender or copy",
+    "awards": "Award (contract already given)",
+    "in_tracker": "Already in tracker",
+    "drone_only": "Excluded - drone only",
+}
+
+NAME_EN = {"burkina": "Burkina Faso daily public procurement bulletin (DGCMEF)",
+           "dou": "Brazil Federal Official Gazette, Section 3 (DOU)",
+           "mercadopublico": "Chile public procurement portal (Mercado Publico)",
+           "comprasmx": "Mexico federal procurement portal (ComprasMX)",
+           "alertalicitacao": "Alerta Licitacao (Brazil tender aggregator)",
+           "eshdhs": "Greece central procurement register (KIMDIS)",
+           "baosem": "BAOSEM (Algeria energy and mining tender bulletin)",
+           "boamp": "BOAMP (France official tender bulletin)",
+           "ezamowienia": "e-Zamowienia (Poland public procurement board)",
+           "udbud": "udbud.dk (Denmark public tenders)",
+           "hilma": "Hilma (Finland public tenders)",
+           "doffin": "Doffin (Norway public tenders)",
+           "tenderned": "TenderNed (Netherlands public tenders)",
+           "placsp": "Spain public sector procurement platform (PLACSP)",
+           "utbod": "Utbod (Iceland public tenders)",
+           "nen": "NEN (Czech national e-procurement)",
+           "secop": "SECOP II (Colombia public procurement)",
+           "pncp": "PNCP (Brazil national procurement portal)"}
+
+
+def _method_en(m):
+    m = (m or "").lower()
+    if "pdf" in m:
+        return "Published PDF bulletins"
+    if "csv" in m or "open-data" in m or "open data" in m:
+        return "Official open-data file"
+    if "headless" in m or "render" in m:
+        return "Public website, read with a browser"
+    if "api" in m or "json" in m or "graphql" in m or "ocds" in m or "atom" in m or "socrata" in m or "ckan" in m:
+        return "Official or public data feed"
+    return "Public website listing"
+
+
+def _problem_en(errors):
+    import re
+    out = []
+    for e in errors:
+        e1 = e.splitlines()[0]
+        if "not set" in e1:
+            out.append("Needs a free API key or account token that has not been added yet")
+        elif m := re.search(r"only (\d+) rows \(expected >= (\d+)\)", e1):
+            out.append(f"Only {m[1]} notices came back (normally at least {m[2]}). The site may have changed "
+                       "or had a quiet week; check by hand")
+        elif "HTTP 202" in e1:
+            out.append("The site answered with a holding page instead of results (likely bot protection); "
+                       "check it by hand")
+        elif "HTTP 5" in e1 or "Timeout" in e1 or "timed out" in e1:
+            out.append("The site was down or too slow on some days, so those days were not read")
+        elif "budget" in e1:
+            out.append("Ran out of time; the oldest days in the window were not read")
+        elif "HTTP 429" in e1 or "rate limit" in e1:
+            out.append("The site limited how many requests it would answer; part of the week was not read")
+        elif "HTTP 40" in e1:
+            out.append("The site refused the request; check it by hand")
+        elif "crashed" in e1:
+            out.append("Scanner error on this portal (needs a fix)")
+        else:
+            out.append(e1[:160])
+    seen, res = set(), []
+    for x in out:
+        if x not in seen:
+            seen.add(x); res.append(x)
+    return ". ".join(res)
+
+
+def _date(iso):
+    import datetime as dt
     try:
-        import openpyxl
-        from openpyxl.styles import Font, PatternFill
-        wb = openpyxl.Workbook()
-        ws = wb.active
-        ws.title = "Candidates"
-        hdr = ["Bucket", "Title", "Country", "Buyer", "Portal", "Ref", "Published", "Deadline", "Tier", "Terms", "Note", "URL"]
-        ws.append(hdr)
-        for key, _, _ in SECTIONS:
-            for d in b.get(key, []):
-                m = d.get("match") or {}
-                ws.append([key, d["title"][:500], d.get("country"), d.get("buyer"), d.get("portal_name"), d.get("ref"),
-                           d.get("published"), d.get("deadline") or "unverified", m.get("tier"),
-                           ", ".join(m.get("terms", [])), d.get("status_note", ""), d["url"]])
-        hs = wb.create_sheet("Portal health")
-        hs.append(["Portal", "Region", "Status", "Rows", "Matched", "Method", "Problems"])
-        for k, v in sorted(p.items()):
-            hs.append([v["name"], v["region"], v["status"], v["rows_seen"], v["matched"], v["method"], "; ".join(v["errors"])[:500]])
-        for s in (ws, hs):
-            for c in s[1]:
-                c.font = Font(bold=True, color="FFFFFFFF")
-                c.fill = PatternFill("solid", fgColor="FF1F3864")
-            s.freeze_panes = "A2"
-            s.auto_filter.ref = s.dimensions
-        wb.save(out / "candidates.xlsx")
-    except Exception as e:  # noqa: BLE001
-        (out / "xlsx_error.txt").write_text(repr(e))
+        return dt.date.fromisoformat(iso).strftime("%d %b %Y")
+    except Exception:  # noqa: BLE001
+        return iso or ""
+
+
+def write_xlsx(rec: dict, out: Path):
+    """Readable review workbook: English text, wrapped cells, rows sized to fit.
+    English titles/verdicts come from runs/<date>/translations.json when present
+    ({"portal:ref": {"title_en", "buyer_en", "verdict"}}); the weekly session fills it."""
+    import json
+    import math
+    import openpyxl
+    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+
+    tr = {}
+    tp = out / "translations.json"
+    if tp.exists():
+        tr = json.loads(tp.read_text())
+    b, p = rec["buckets"], rec["portals"]
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Candidates"
+    cols = [("Status", 22), ("Verdict", 42), ("Title (English)", 60), ("Buyer", 30), ("Country", 16),
+            ("Deadline", 13), ("Published", 13), ("Found on", 20), ("Reference", 22), ("Why it matched", 30),
+            ("Link", 14)]
+    ws.append([c for c, _ in cols])
+    order = ["new", "deadline_changed", "possible_duplicate", "awards", "review", "in_tracker", "drone_only"]
+    fills = {"new": "FFC6EFCE", "deadline_changed": "FFFFEB9C", "possible_duplicate": "FFFFF2CC",
+             "awards": "FFDDEBF7", "review": "FFFFFFFF", "in_tracker": "FFF2F2F2", "drone_only": "FFF2F2F2"}
+    for key in order:
+        for d in b.get(key, []):
+            t = tr.get(f"{d['portal']}:{d['ref']}", {})
+            m = d.get("match") or {}
+            country = COUNTRY.get((d.get("country") or "").upper(), d.get("country") or "")
+            title_en = t.get("title_en") or d["title"]
+            ws.append([STATUS_EN.get(key, key), t.get("verdict", "Not yet verified"), title_en,
+                       t.get("buyer_en") or d.get("buyer") or "Not stated", country,
+                       _date(d.get("deadline")) or "Not stated", _date(d.get("published")) or "Not stated",
+                       d.get("portal_name") or d["portal"], d.get("ref"),
+                       WHY.get(m.get("tier"), "") + (" (in the title)" if m.get("in_title") else " (in the description)"),
+                       "Open notice"])
+            r = ws.max_row
+            for c in ws[r]:
+                c.fill = PatternFill("solid", fgColor=fills[key])
+            ws.cell(r, 11).hyperlink = d["url"]
+            ws.cell(r, 11).font = Font(name="Calibri", size=11, color="FF1F4E9A", underline="single")
+
+    hs = wb.create_sheet("Portal health")
+    hcols = [("Portal", 34), ("Region", 18), ("Status", 10), ("Notices read", 13), ("Matched", 10),
+             ("How it is read", 34), ("Problem (if any)", 70)]
+    hs.append([c for c, _ in hcols])
+    rank = {"FAIL": 0, "WARN": 1, "OK": 2}
+    for k, v in sorted(p.items(), key=lambda kv: (rank[kv[1]["status"]], kv[1]["region"], kv[1]["name"])):
+        prob = _problem_en(v["errors"])
+        status = {"OK": "OK", "WARN": "Partial", "FAIL": "Not read"}[v["status"]]
+        hs.append([NAME_EN.get(k, v["name"]), v["region"], status, v["rows_seen"], v["matched"],
+                   _method_en(v["method"]), prob or "None"])
+        if v["status"] != "OK":
+            for c in hs[hs.max_row]:
+                c.fill = PatternFill("solid", fgColor="FFFCE4D6" if v["status"] == "FAIL" else "FFFFF2CC")
+
+    thin = Side(style="thin", color="FFBFBFBF")
+    for sheet, spec in ((ws, cols), (hs, hcols)):
+        for i, (_, w) in enumerate(spec, 1):
+            sheet.column_dimensions[openpyxl.utils.get_column_letter(i)].width = w
+        for row in sheet.iter_rows():
+            lines = 1
+            for i, c in enumerate(row):
+                c.alignment = Alignment(wrap_text=True, vertical="top")
+                c.border = Border(top=thin, bottom=thin, left=thin, right=thin)
+                if c.row > 1 and not c.hyperlink:
+                    c.font = Font(name="Calibri", size=11)
+                w = spec[i][1]
+                text = str(c.value or "")
+                # wrapped line estimate: ~1.15 chars per width unit at 11pt, plus explicit newlines
+                est = sum(max(1, math.ceil(len(part) / max(1.0, (w - 2) * 0.95))) for part in text.split("\n"))
+                lines = max(lines, est)
+            sheet.row_dimensions[row[0].row].height = max(18, 15.5 * lines + 4)
+        for c in sheet[1]:
+            c.font = Font(name="Calibri", size=11, bold=True, color="FFFFFFFF")
+            c.fill = PatternFill("solid", fgColor="FF1F3864")
+            c.alignment = Alignment(wrap_text=True, vertical="center", horizontal="center")
+        sheet.row_dimensions[1].height = 32
+        sheet.freeze_panes = "A2"
+        sheet.auto_filter.ref = sheet.dimensions
+    wb.save(out / "candidates.xlsx")
+
+
+if __name__ == "__main__":
+    import json
+    import sys
+    d = Path(sys.argv[1])
+    write_xlsx(json.loads((d / "sweep.json").read_text()), d)
+    print("wrote", d / "candidates.xlsx")

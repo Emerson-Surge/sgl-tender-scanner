@@ -22,6 +22,12 @@ Write the verdicts to `runs/<date>/verified.md` as a table: verdict (QUALIFIES /
 client, country, services, deadline, value, source URL, one-line reason.
 Never invent a winner, value or deadline. Public sources only.
 
+Then write `runs/<date>/translations.json` covering EVERY row in the Candidates sheet (all buckets),
+keyed "portal:ref" exactly as in sweep.json, with plain-English values:
+`{"portal:ref": {"title_en": "...", "buyer_en": "...", "verdict": "QUALIFIES / OUT / CHECK / AWARD / EXCLUDED: one-line reason"}}`.
+Translate every non-English title and buyer name into English. Then rebuild the spreadsheet so it carries them:
+`python3 -m scanner.report runs/<date>` (every cell must be English; the sheet wraps text and sizes rows itself).
+
 ## 3. Commit
 `git add -A && git commit -m "Sweep <date>: <summary line>" && git push`
 
