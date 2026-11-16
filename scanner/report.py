@@ -196,63 +196,125 @@ def _date(iso):
 
 
 def write_xlsx(rec: dict, out: Path):
-    """Readable review workbook: English text, wrapped cells, rows sized to fit.
-    English titles/verdicts come from runs/<date>/translations.json when present
-    ({"portal:ref": {"title_en", "buyer_en", "verdict"}}); the weekly session fills it."""
+    """Review workbook, curated like a tracker.
+
+    Leads tab: only what deserves attention this week -
+      1. new tenders that QUALIFY or need a CHECK (or are airborne and not yet verified),
+      2. open tracker items and anything in the tracker closing within 45 days, with this week's update,
+      3. airborne-geophysics award intel.
+    Filtered out tab: every other match with the reason it was dropped (audit only).
+    Portal health tab: one row per portal in plain English.
+
+    English titles/verdicts come from runs/<date>/translations.json and tracker notes from
+    runs/<date>/tracker_updates.json; the weekly session writes both."""
+    import datetime as dt
     import json
     import math
     import openpyxl
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+    from .state import TRACKER_REFS
 
-    tr = {}
-    tp = out / "translations.json"
-    if tp.exists():
-        tr = json.loads(tp.read_text())
+    def load(name):
+        f = out / name
+        return json.loads(f.read_text()) if f.exists() else {}
+
+    tr, upd = load("translations.json"), load("tracker_updates.json")
+    tracker = json.loads(TRACKER_REFS.read_text()).get("rows", []) if TRACKER_REFS.exists() else []
     b, p = rec["buckets"], rec["portals"]
-    wb = openpyxl.Workbook()
-    ws = wb.active
-    ws.title = "Candidates"
-    cols = [("Status", 22), ("Verdict", 42), ("Title (English)", 60), ("Buyer", 30), ("Country", 16),
-            ("Deadline", 13), ("Published", 13), ("Found on", 20), ("Reference", 22), ("Why it matched", 30),
-            ("Link", 14)]
-    ws.append([c for c, _ in cols])
-    order = ["new", "deadline_changed", "possible_duplicate", "awards", "review", "in_tracker", "drone_only"]
-    fills = {"new": "FFC6EFCE", "deadline_changed": "FFFFEB9C", "possible_duplicate": "FFFFF2CC",
-             "awards": "FFDDEBF7", "review": "FFFFFFFF", "in_tracker": "FFF2F2F2", "drone_only": "FFF2F2F2"}
-    for key in order:
+    today = dt.date.fromisoformat(rec["date"])
+
+    leads_new, intel, filtered = [], [], []
+    for key in ["new", "deadline_changed", "possible_duplicate", "awards", "review", "in_tracker", "drone_only"]:
         for d in b.get(key, []):
             t = tr.get(f"{d['portal']}:{d['ref']}", {})
-            m = d.get("match") or {}
-            country = COUNTRY.get((d.get("country") or "").upper(), d.get("country") or "")
-            title_en = t.get("title_en") or d["title"]
-            ws.append([STATUS_EN.get(key, key), t.get("verdict", "Not yet verified"), title_en,
-                       t.get("buyer_en") or d.get("buyer") or "Not stated", country,
-                       _date(d.get("deadline")) or "Not stated", _date(d.get("published")) or "Not stated",
-                       d.get("portal_name") or d["portal"], d.get("ref"),
-                       WHY.get(m.get("tier"), "") + (" (in the title)" if m.get("in_title") else " (in the description)"),
-                       "Open notice"])
-            r = ws.max_row
-            for c in ws[r]:
-                c.fill = PatternFill("solid", fgColor=fills[key])
-            ws.cell(r, 11).hyperlink = d["url"]
-            ws.cell(r, 11).font = Font(name="Calibri", size=11, color="FF1F4E9A", underline="single")
+            v = (t.get("verdict") or "").strip()
+            vu = v.upper()
+            row = {"d": d, "t": t, "key": key, "verdict": v or "Not yet verified"}
+            if vu.startswith(("QUALIFIES", "CHECK")):
+                leads_new.append(row)
+            elif vu.startswith("AWARD"):
+                intel.append(row)
+            elif not v and key in ("new", "deadline_changed") and (d.get("match") or {}).get("airborne"):
+                leads_new.append(row)
+            elif not v and key == "awards" and (d.get("match") or {}).get("airborne"):
+                intel.append(row)
+            else:
+                filtered.append(row)
+
+    def soon(r):
+        if r.get("status") == "Open":
+            return True
+        if r.get("deadline"):
+            try:
+                return 0 <= (dt.date.fromisoformat(r["deadline"]) - today).days <= 45
+            except ValueError:
+                return False
+        return False
+    tracked = [r for r in tracker if soon(r) or any(r["opportunity"].startswith(k[:40]) for k in upd)]
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Leads"
+    W = [("Section", 20), ("Opportunity", 56), ("Country", 16), ("Buyer", 28), ("Deadline", 14),
+         ("Verdict / this week's update", 58), ("Found on", 20), ("Link", 13)]
+    ws.append([c for c, _ in W])
+    SEC = {"new": "FFC6EFCE", "tracked": "FFDDEBF7", "intel": "FFFFF2CC", "none": "FFF2F2F2"}
+
+    def add(sheet, values, fill, url=None, link_col=None):
+        sheet.append(values)
+        r = sheet.max_row
+        for c in sheet[r]:
+            c.fill = PatternFill("solid", fgColor=fill)
+        if url and link_col:
+            c = sheet.cell(r, link_col)
+            c.value, c.hyperlink = "Open notice", url
+            c.font = Font(name="Calibri", size=11, color="FF1F4E9A", underline="single")
+
+    def country(d):
+        return COUNTRY.get((d.get("country") or "").upper(), d.get("country") or "")
+
+    if leads_new:
+        for x in leads_new:
+            d, t = x["d"], x["t"]
+            add(ws, ["New tender", t.get("title_en") or d["title"], country(d), t.get("buyer_en") or d.get("buyer") or "Not stated",
+                     _date(d.get("deadline")) or "Not stated", x["verdict"], d.get("portal_name"), ""], SEC["new"], d["url"], 8)
+    else:
+        add(ws, ["New tender", "No new qualifying tenders this week", "", "", "", "All matches were checked; see the Filtered out tab for the reasons.", "", ""], SEC["none"])
+    for r in tracked:
+        note = next((v for k, v in upd.items() if r["opportunity"].startswith(k[:40])), "")
+        star = "Priority: " if "★" in str(r.get("priority")) else ""
+        dl = _date(r["deadline"]) if r.get("deadline") else (r.get("timing") or "")[:60]
+        src = (r.get("source") or "").split(";")[0].strip()
+        add(ws, [f"Tracker ({r.get('status')})", star + str(r["opportunity"]), r.get("country") or "", "", dl,
+                 note or "No change found by the scan this week", "Your tracker", ""], SEC["tracked"],
+            src if src.startswith("http") else None, 8)
+    for x in intel:
+        d, t = x["d"], x["t"]
+        add(ws, ["Market intel (award)", t.get("title_en") or d["title"], country(d), t.get("buyer_en") or d.get("buyer") or "Not stated",
+                 "Awarded", x["verdict"], d.get("portal_name"), ""], SEC["intel"], d["url"], 8)
+
+    fs = wb.create_sheet("Filtered out")
+    FW = [("Reason it was dropped", 60), ("Title (English)", 60), ("Country", 16), ("Deadline", 14),
+          ("Found on", 20), ("Link", 13)]
+    fs.append([c for c, _ in FW])
+    for x in filtered:
+        d, t = x["d"], x["t"]
+        reason = x["verdict"] if x["verdict"] != "Not yet verified" else STATUS_EN.get(x["key"], x["key"])
+        add(fs, [reason, t.get("title_en") or d["title"], country(d), _date(d.get("deadline")) or "Not stated",
+                 d.get("portal_name"), ""], "FFFFFFFF", d["url"], 6)
 
     hs = wb.create_sheet("Portal health")
-    hcols = [("Portal", 34), ("Region", 18), ("Status", 10), ("Notices read", 13), ("Matched", 10),
-             ("How it is read", 34), ("Problem (if any)", 70)]
-    hs.append([c for c, _ in hcols])
+    HW = [("Portal", 34), ("Region", 16), ("Status", 10), ("Notices read", 12), ("Matched", 10),
+          ("How it is read", 32), ("Problem (if any)", 70)]
+    hs.append([c for c, _ in HW])
     rank = {"FAIL": 0, "WARN": 1, "OK": 2}
     for k, v in sorted(p.items(), key=lambda kv: (rank[kv[1]["status"]], kv[1]["region"], kv[1]["name"])):
-        prob = _problem_en(v["errors"])
-        status = {"OK": "OK", "WARN": "Partial", "FAIL": "Not read"}[v["status"]]
-        hs.append([NAME_EN.get(k, v["name"]), v["region"], status, v["rows_seen"], v["matched"],
-                   _method_en(v["method"]), prob or "None"])
-        if v["status"] != "OK":
-            for c in hs[hs.max_row]:
-                c.fill = PatternFill("solid", fgColor="FFFCE4D6" if v["status"] == "FAIL" else "FFFFF2CC")
+        fill = {"FAIL": "FFFCE4D6", "WARN": "FFFFF2CC", "OK": "FFFFFFFF"}[v["status"]]
+        add(hs, [NAME_EN.get(k, v["name"]), v["region"], {"OK": "OK", "WARN": "Partial", "FAIL": "Not read"}[v["status"]],
+                 v["rows_seen"], v["matched"], _method_en(v["method"]), _problem_en(v["errors"]) or "None"], fill)
 
     thin = Side(style="thin", color="FFBFBFBF")
-    for sheet, spec in ((ws, cols), (hs, hcols)):
+    for sheet, spec in ((ws, W), (fs, FW), (hs, HW)):
         for i, (_, w) in enumerate(spec, 1):
             sheet.column_dimensions[openpyxl.utils.get_column_letter(i)].width = w
         for row in sheet.iter_rows():
@@ -261,10 +323,9 @@ def write_xlsx(rec: dict, out: Path):
                 c.alignment = Alignment(wrap_text=True, vertical="top")
                 c.border = Border(top=thin, bottom=thin, left=thin, right=thin)
                 if c.row > 1 and not c.hyperlink:
-                    c.font = Font(name="Calibri", size=11)
+                    c.font = Font(name="Calibri", size=11, bold=(sheet is ws and i == 1))
                 w = spec[i][1]
                 text = str(c.value or "")
-                # wrapped line estimate: ~1.15 chars per width unit at 11pt, plus explicit newlines
                 est = sum(max(1, math.ceil(len(part) / max(1.0, (w - 2) * 0.95))) for part in text.split("\n"))
                 lines = max(lines, est)
             sheet.row_dimensions[row[0].row].height = max(18, 15.5 * lines + 4)

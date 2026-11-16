@@ -117,9 +117,24 @@ def import_tracker(xlsx_path: str) -> dict:
             if ws.title in ("Details", "Closed & excluded") and len(cells) > 1:
                 titles.append(cells[1] if ws.title == "Details" else cells[0])
     blob = "\n".join(texts).lower()
+    rows = []
+    if "Details" in wb.sheetnames:
+        hdr = None
+        for r in wb["Details"].iter_rows(values_only=True):
+            if r and r[1] == "Opportunity":
+                hdr = [str(h or "") for h in r]
+                continue
+            if hdr and r and r[1]:
+                d = dict(zip(hdr, r))
+                dd = d.get("Deadline (date)")
+                rows.append({"priority": d.get("Priority") or "", "opportunity": d.get("Opportunity"),
+                             "status": d.get("Status"), "country": d.get("Country"), "services": d.get("Services"),
+                             "fit": d.get("Fit"), "timing": str(d.get("Deadline / Timing") or ""),
+                             "deadline": dd.date().isoformat() if hasattr(dd, "date") else "",
+                             "action": d.get("Action") or "", "source": str(d.get("Source") or "")})
     urls = sorted(set(re.findall(r"https?://[^\s;,)'\"]+", blob)))
     data = {"imported_from": Path(xlsx_path).name, "imported_at": dt.date.today().isoformat(),
-            "urls": urls, "titles": titles, "blob": blob,
+            "urls": urls, "titles": titles, "blob": blob, "rows": rows,
             "title_keys_blob": "\n".join(title_key(t) for t in titles)}
     STATE_DIR.mkdir(exist_ok=True)
     TRACKER_REFS.write_text(json.dumps(data, ensure_ascii=False))

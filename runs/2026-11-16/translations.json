@@ -1,19 +1,81 @@
 {
- "tenderimpulse:16086998": {"title_en": "Pre-qualification for a cybersecurity infrastructure purchase by the China Aero Geophysical Survey and Remote Sensing Center for Natural Resources (AGRS)", "buyer_en": "China Aero Geophysical Survey and Remote Sensing Center for Natural Resources (AGRS)", "verdict": "OUT: IT/cybersecurity purchase, not survey work. Intel only: AGRS is China's state airborne geophysics agency."},
- "tendernews:12455516261116": {"title_en": "Commissioning of a radioactive-waste container certification system using a Multirad MKS-01 gamma spectrometer and LSRM software", "verdict": "OUT: laboratory/nuclear-waste gamma equipment, not airborne."},
- "eshdhs:26PROC020195281": {"title_en": "Consultancy to prepare the application file for using the Loutraki healing mineral spring for drinking therapy (geology and geophysics advisory)", "buyer_en": "Municipality of Loutraki - Perachora - Agioi Theodoroi", "verdict": "OUT: small ground geology consultancy for a spa spring."},
- "tendernews:5166616261114": {"title_en": "Geophysical survey, drilling and construction of 32 solar-powered boreholes with water storage and distribution", "verdict": "OUT: ground geophysics for water boreholes."},
- "dgmarket:117911047": {"title_en": "Supply and delivery of aerial photography and LiDAR for 36 months", "buyer_en": "Department of Lands, Planning and Environment", "verdict": "OUT: aerial photography and LiDAR mapping (LiDAR-only rule). Northern Territory, Australia."},
- "boamp:26-110756": {"title_en": "Acquisition and processing of airborne LiDAR data and orthophotography over the French Guiana forest", "buyer_en": "French National Forests Office (ONF), French Guiana directorate", "verdict": "AWARD (market intel): contract already awarded. LiDAR-only, outside the bid rules."},
- "tenderned:449422": {"title_en": "Independent verification and validation (IV&V) radio-frequency equipment for the Netherlands air force electronic warfare unit", "buyer_en": "Netherlands Ministry of Defence", "verdict": "OUT: military RF equipment; matched only on 'electromagnetic' and 'aircraft'."},
- "pncp:01639869000143-1-000010/2026": {"title_en": "Software platform to modernise legislative and administrative work at the São Roque do Canaã (Espírito Santo) municipal council, with electronic case handling", "buyer_en": "São Roque do Canaã municipal council, Brazil", "verdict": "OUT: municipal IT software, false match."},
- "tendernews:15183516261116": {"title_en": "High-purity germanium (HPGe) gamma-ray spectrometry system", "verdict": "OUT: laboratory gamma detector. Copy of a notice already seen 13 Nov."},
- "tenderimpulse:16322345": {"title_en": "Construction of 4 medium-depth piezometers (groundwater monitoring wells) in Mirzapur district, with geophysical survey", "buyer_en": "Ground Water Department, Uttar Pradesh", "verdict": "OUT: ground water wells. Copy of a notice already seen 13 Nov."},
- "tenderimpulse:16404117": {"title_en": "Geophysical survey, drilling of the Mihilu borehole and construction of the Mihilu water supply project, Rufiji District", "verdict": "OUT: ground geophysics for a water borehole. Copy of a notice already seen 13 Nov."},
- "tenderimpulse:16140482": {"title_en": "Geotechnical and geophysical survey for siting the Multi-Purpose Reactor (MPR)", "buyer_en": "NECSA (South African Nuclear Energy Corporation)", "verdict": "CHECK, probably OUT: likely ground geophysics for reactor siting. Copy of a notice already seen 13 Nov."},
- "tenderimpulse:14868343": {"title_en": "Geophysical survey of wind farm search area 6/7", "verdict": "OUT: marine (offshore wind) geophysics. Copy of a notice already seen 13 Nov."},
- "ted:794753-2026": {"title_en": "Germany: airborne LiDAR survey flight for rebuilding the 110 kV overhead power line Uppenborn - Föhring (incl. Moosburg branch)", "buyer_en": "SWM Infrastruktur GmbH & Co. KG (Munich utilities)", "verdict": "AWARD (market intel): LiDAR flight contract already awarded."},
- "tenderimpulse:16021047": {"title_en": "UAV measurement system: airborne LiDAR system (equipment purchase)", "verdict": "EXCLUDED: drone-only equipment."},
- "firsttender:261116450800": {"title_en": "LiDAR, aerial LiDAR, DGPS and total station architectural, landscape, cadastral, photogrammetry and drone survey", "buyer_en": "Archaeological Survey of India", "verdict": "EXCLUDED: drone and ground mapping."},
- "philgeps:132845": {"title_en": "Purchase of a multirotor drone (UAV) with LiDAR and a post-processing laptop, Planning and Design Section, Rizal 2nd District Engineering Office", "buyer_en": "Department of Public Works and Highways, Rizal 2nd District Engineering Office", "verdict": "EXCLUDED: drone equipment purchase."}
+ "tenderimpulse:16086998": {
+  "title_en": "Pre-qualification for a cybersecurity infrastructure purchase by the China Aero Geophysical Survey and Remote Sensing Center for Natural Resources (AGRS)",
+  "buyer_en": "China Aero Geophysical Survey and Remote Sensing Center for Natural Resources (AGRS)",
+  "verdict": "OUT: IT/cybersecurity purchase, not survey work. Intel only: AGRS is China's state airborne geophysics agency."
+ },
+ "tendernews:12455516261116": {
+  "title_en": "Commissioning of a radioactive-waste container certification system using a Multirad MKS-01 gamma spectrometer and LSRM software",
+  "verdict": "OUT: laboratory/nuclear-waste gamma equipment, not airborne."
+ },
+ "eshdhs:26PROC020195281": {
+  "title_en": "Consultancy to prepare the application file for using the Loutraki healing mineral spring for drinking therapy (geology and geophysics advisory)",
+  "buyer_en": "Municipality of Loutraki - Perachora - Agioi Theodoroi",
+  "verdict": "OUT: small ground geology consultancy for a spa spring."
+ },
+ "tendernews:5166616261114": {
+  "title_en": "Geophysical survey, drilling and construction of 32 solar-powered boreholes with water storage and distribution",
+  "verdict": "OUT: ground geophysics for water boreholes."
+ },
+ "dgmarket:117911047": {
+  "title_en": "Supply and delivery of aerial photography and LiDAR for 36 months",
+  "buyer_en": "Department of Lands, Planning and Environment",
+  "verdict": "OUT: aerial photography and LiDAR mapping (LiDAR-only rule). Northern Territory, Australia."
+ },
+ "boamp:26-110756": {
+  "title_en": "Acquisition and processing of airborne LiDAR data and orthophotography over the French Guiana forest",
+  "buyer_en": "French National Forests Office (ONF), French Guiana directorate",
+  "verdict": "OUT (intel only): LiDAR and orthophoto contract already awarded by ONF Guyane; LiDAR-only is outside the bid rules."
+ },
+ "tenderned:449422": {
+  "title_en": "Independent verification and validation (IV&V) radio-frequency equipment for the Netherlands air force electronic warfare unit",
+  "buyer_en": "Netherlands Ministry of Defence",
+  "verdict": "OUT: military RF equipment; matched only on 'electromagnetic' and 'aircraft'."
+ },
+ "pncp:01639869000143-1-000010/2026": {
+  "title_en": "Software platform to modernise legislative and administrative work at the São Roque do Canaã (Espírito Santo) municipal council, with electronic case handling",
+  "buyer_en": "São Roque do Canaã municipal council, Brazil",
+  "verdict": "OUT: municipal IT software, false match."
+ },
+ "tendernews:15183516261116": {
+  "title_en": "High-purity germanium (HPGe) gamma-ray spectrometry system",
+  "verdict": "OUT: laboratory gamma detector. Copy of a notice already seen 13 Nov."
+ },
+ "tenderimpulse:16322345": {
+  "title_en": "Construction of 4 medium-depth piezometers (groundwater monitoring wells) in Mirzapur district, with geophysical survey",
+  "buyer_en": "Ground Water Department, Uttar Pradesh",
+  "verdict": "OUT: ground water wells. Copy of a notice already seen 13 Nov."
+ },
+ "tenderimpulse:16404117": {
+  "title_en": "Geophysical survey, drilling of the Mihilu borehole and construction of the Mihilu water supply project, Rufiji District",
+  "verdict": "OUT: ground geophysics for a water borehole. Copy of a notice already seen 13 Nov."
+ },
+ "tenderimpulse:16140482": {
+  "title_en": "Geotechnical and geophysical survey for siting the Multi-Purpose Reactor (MPR)",
+  "buyer_en": "NECSA (South African Nuclear Energy Corporation)",
+  "verdict": "OUT (likely): ground geotechnical and geophysical site investigation for a reactor, not airborne. Copy of a notice already seen 13 Nov."
+ },
+ "tenderimpulse:14868343": {
+  "title_en": "Geophysical survey of wind farm search area 6/7",
+  "verdict": "OUT: marine (offshore wind) geophysics. Copy of a notice already seen 13 Nov."
+ },
+ "ted:794753-2026": {
+  "title_en": "Germany: airborne LiDAR survey flight for rebuilding the 110 kV overhead power line Uppenborn - Föhring (incl. Moosburg branch)",
+  "buyer_en": "SWM Infrastruktur GmbH & Co. KG (Munich utilities)",
+  "verdict": "OUT (intel only): LiDAR power-line survey flight already awarded; LiDAR-only is outside the bid rules."
+ },
+ "tenderimpulse:16021047": {
+  "title_en": "UAV measurement system: airborne LiDAR system (equipment purchase)",
+  "verdict": "EXCLUDED: drone-only equipment."
+ },
+ "firsttender:261116450800": {
+  "title_en": "LiDAR, aerial LiDAR, DGPS and total station architectural, landscape, cadastral, photogrammetry and drone survey",
+  "buyer_en": "Archaeological Survey of India",
+  "verdict": "EXCLUDED: drone and ground mapping."
+ },
+ "philgeps:132845": {
+  "title_en": "Purchase of a multirotor drone (UAV) with LiDAR and a post-processing laptop, Planning and Design Section, Rizal 2nd District Engineering Office",
+  "buyer_en": "Department of Public Works and Highways, Rizal 2nd District Engineering Office",
+  "verdict": "EXCLUDED: drone equipment purchase."
+ }
 }

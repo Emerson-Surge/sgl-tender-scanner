@@ -25,7 +25,17 @@ Never invent a winner, value or deadline. Public sources only.
 Then write `runs/<date>/translations.json` covering EVERY row in the Candidates sheet (all buckets),
 keyed "portal:ref" exactly as in sweep.json, with plain-English values:
 `{"portal:ref": {"title_en": "...", "buyer_en": "...", "verdict": "QUALIFIES / OUT / CHECK / AWARD / EXCLUDED: one-line reason"}}`.
-Translate every non-English title and buyer name into English. Then rebuild the spreadsheet so it carries them:
+Translate every non-English title and buyer name into English. Start every verdict with one of
+QUALIFIES, CHECK, AWARD (airborne geophysics award worth knowing), OUT or EXCLUDED: only QUALIFIES and
+CHECK rows reach the Leads tab, so be strict; "probably out" is OUT. LiDAR-only awards are OUT (intel only).
+
+Also write `runs/<date>/tracker_updates.json`: `{"<start of the tracker Opportunity text>": "this week's update"}`
+for every open tracker item and any tracker item whose deadline is within 45 days or that this week's
+sweep touched (new listing number, changed deadline, closed, award). Only facts read from a source this week.
+Re-import the tracker first if Emerson sent a newer workbook:
+`python3 -c "from scanner.state import import_tracker; import_tracker('<path>')"`.
+
+Then rebuild the spreadsheet so it carries them:
 `python3 -m scanner.report runs/<date>` (every cell must be English; the sheet wraps text and sizes rows itself).
 
 ## 3. Commit
