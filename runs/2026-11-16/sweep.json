@@ -1,0 +1,2409 @@
+{
+ "date": "2026-11-16",
+ "ran_at_utc": "2026-11-16T13:55:50+00:00",
+ "summary": "SGL sweep 2026-11-16: portals 41 OK / 3 warn / 4 failed of 48; rows read 28494; NEW likely-airborne 1, geophysics-review 7, deadline changes 0, possible re-tenders 5, awards 1, already tracked 0, drone-only excluded 3",
+ "portals": {
+  "alertalicitacao": {
+   "name": "Alerta Licitação (Brazil)",
+   "region": "Americas",
+   "method": "Official API v1 (token in ALERTALICITACAO_TOKEN); website manual-only",
+   "url": "https://alertalicitacao.com.br/",
+   "status": "FAIL",
+   "rows_seen": 0,
+   "min_rows": 1,
+   "queries": 0,
+   "matched": 0,
+   "errors": [
+    "ALERTALICITACAO_TOKEN not set (token needs an Alerta Licitação account); website search is manual-only: results not served to plain/headless requests"
+   ],
+   "notes": [
+    "window from 2026-11-02"
+   ],
+   "seconds": 0.0
+  },
+  "baosem": {
+   "name": "BAOSEM (Algeria energy & mines bulletin)",
+   "region": "Africa/MENA",
+   "method": "Public search form HTML (subscriber fields hidden)",
+   "url": "https://www.baosem.com/appel-offre/last",
+   "status": "OK",
+   "rows_seen": 530,
+   "min_rows": 50,
+   "queries": 29,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "time budget hit (aéroporté p1)",
+    "time budget hit (aéromagnétique p1)",
+    "time budget hit (magnétométrie p1)",
+    "time budget hit (gravimétrie p1)",
+    "time budget hit (spectrométrie p1)",
+    "time budget hit (جيوفيزيائي p1)"
+   ],
+   "seconds": 109.4
+  },
+  "boamp": {
+   "name": "BOAMP (France)",
+   "region": "Europe",
+   "method": "Official Opendatasoft API on boamp.fr (export + full-text search)",
+   "url": "https://www.boamp.fr/pages/recherche/",
+   "status": "OK",
+   "rows_seen": 1450,
+   "min_rows": 500,
+   "queries": 17,
+   "matched": 1,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 55.6
+  },
+  "burkina": {
+   "name": "Burkina Faso Quotidien des marchés publics (DGCMEF)",
+   "region": "Africa",
+   "method": "Public daily bulletin PDFs (pdftotext, split per item)",
+   "url": "https://www.dgcmef.gov.bf/index.php/fr/appels-d-offre",
+   "status": "FAIL",
+   "rows_seen": 0,
+   "min_rows": 1,
+   "queries": 1,
+   "matched": 0,
+   "errors": [
+    "only 0 rows (expected >= 1): page layout may have changed or portal is empty"
+   ],
+   "notes": [
+    "window from 2026-11-02"
+   ],
+   "seconds": 1.8
+  },
+  "canadabuys": {
+   "name": "CanadaBuys (Canada)",
+   "region": "Americas",
+   "method": "Official open-data CSVs (keyless)",
+   "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+   "status": "OK",
+   "rows_seen": 947,
+   "min_rows": 100,
+   "queries": 2,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 1.0
+  },
+  "comprasmx": {
+   "name": "ComprasMX (Mexico)",
+   "region": "Americas",
+   "method": "Public site 'Anuncios vigentes', headless render + paging",
+   "url": "https://comprasmx.buengobierno.gob.mx/sitiopublico/#/",
+   "status": "OK",
+   "rows_seen": 960,
+   "min_rows": 200,
+   "queries": 1,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 25.1
+  },
+  "contractsfinder": {
+   "name": "UK Contracts Finder",
+   "region": "Europe",
+   "method": "Official OCDS search API (keyless), stages=tender",
+   "url": "https://www.contractsfinder.service.gov.uk/Search",
+   "status": "WARN",
+   "rows_seen": 29,
+   "min_rows": 50,
+   "queries": 1,
+   "matched": 0,
+   "errors": [
+    "only 29 rows (expected >= 50): page layout may have changed or portal is empty"
+   ],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 2.7
+  },
+  "controlbid": {
+   "name": "ControlBid (Petronect mirror)",
+   "region": "Americas",
+   "method": "Public HTML listing + detail pages",
+   "url": "https://controlbid.com.br/licitacoes/",
+   "status": "OK",
+   "rows_seen": 308,
+   "min_rows": 100,
+   "queries": 1,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 0.8
+  },
+  "dgmarket": {
+   "name": "dgMarket (CPV listing)",
+   "region": "Global",
+   "method": "Public CPV listing, headless render (listing fields only)",
+   "url": "https://www2.dgmarket.com/NoticeList?cpv=71351710",
+   "status": "OK",
+   "rows_seen": 444,
+   "min_rows": 10,
+   "queries": 16,
+   "matched": 1,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 68.9
+  },
+  "doffin": {
+   "name": "Doffin (Norway)",
+   "region": "Europe",
+   "method": "Website's keyless JSON search API, 7-day chunks",
+   "url": "https://www.doffin.no/search",
+   "status": "OK",
+   "rows_seen": 322,
+   "min_rows": 150,
+   "queries": 11,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 5.0
+  },
+  "dou": {
+   "name": "Diário Oficial da União - Seção 3 (Brazil)",
+   "region": "Americas",
+   "method": "Public reader page, embedded jsonArray (one GET per weekday)",
+   "url": "https://www.in.gov.br/leiturajornal?secao=do3",
+   "status": "WARN",
+   "rows_seen": 4526,
+   "min_rows": 1000,
+   "queries": 3,
+   "matched": 0,
+   "errors": [
+    "2026-11-11: HTTP 502",
+    "2026-11-12: ReadTimeout: HTTPSConnectionPool(host='www.in.gov.br', port=443): Read timed out. (read timeout=40)"
+   ],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 48.1
+  },
+  "eprocng": {
+   "name": "Nigeria NipeX current opportunities (NNPC/upstream)",
+   "region": "Africa",
+   "method": "Public HTML cards",
+   "url": "https://nipexmain.nipex-ng.com/newsite/current-opportunities.php",
+   "status": "OK",
+   "rows_seen": 4,
+   "min_rows": 1,
+   "queries": 1,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 0.8
+  },
+  "eshdhs": {
+   "name": "Greece KIMDIS (ESHDHS)",
+   "region": "Europe",
+   "method": "Official open-data API (keyless), title + CPV search",
+   "url": "https://cerpp.eprocurement.gov.gr/upgkimdis/unprotected/home.xhtml",
+   "status": "OK",
+   "rows_seen": 9,
+   "min_rows": 1,
+   "queries": 13,
+   "matched": 3,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 5.0
+  },
+  "etendersie": {
+   "name": "eTenders (Ireland)",
+   "region": "Europe",
+   "method": "Public notice listing (HTML, 100/page)",
+   "url": "https://www.etenders.gov.ie/epps/quickSearchAction.do?searchType=cftFTS&latest=true",
+   "status": "OK",
+   "rows_seen": 100,
+   "min_rows": 60,
+   "queries": 1,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 1.3
+  },
+  "etenderza": {
+   "name": "eTenders South Africa",
+   "region": "Africa",
+   "method": "Public DataTable JSON (PaginatedTenderOpportunities)",
+   "url": "https://www.etenders.gov.za/Home/opportunities?id=1",
+   "status": "OK",
+   "rows_seen": 1000,
+   "min_rows": 100,
+   "queries": 2,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 3.4
+  },
+  "etimad": {
+   "name": "Etimad (Saudi Arabia)",
+   "region": "Middle East",
+   "method": "Public visitor search JSON (AllSupplierTendersForVisitorAsync)",
+   "url": "https://tenders.etimad.sa/Tender/AllTendersForVisitor",
+   "status": "OK",
+   "rows_seen": 576,
+   "min_rows": 100,
+   "queries": 24,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 82.2
+  },
+  "ezamowienia": {
+   "name": "e-Zamówienia BZP (Poland)",
+   "region": "Europe",
+   "method": "Board's keyless JSON search (subject/CPV/buyer queries)",
+   "url": "https://ezamowienia.gov.pl/mo-client-board/bzp/list",
+   "status": "OK",
+   "rows_seen": 70,
+   "min_rows": 3,
+   "queries": 33,
+   "matched": 1,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 12.1
+  },
+  "firsttender": {
+   "name": "FirstTender (India)",
+   "region": "Asia-Pacific",
+   "method": "Public keyword/buyer pages, schema.org JSON-LD",
+   "url": "https://www.firsttender.com/bids/geophysical-tenders.html",
+   "status": "OK",
+   "rows_seen": 170,
+   "min_rows": 15,
+   "queries": 29,
+   "matched": 4,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 7.4
+  },
+  "fts": {
+   "name": "UK Find a Tender",
+   "region": "Europe",
+   "method": "Official OCDS API (keyless), cursor pagination",
+   "url": "https://www.find-tender.service.gov.uk/Search",
+   "status": "OK",
+   "rows_seen": 1559,
+   "min_rows": 200,
+   "queries": 16,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "521 tender/planning notices kept of 1559 releases (awards dropped)"
+   ],
+   "seconds": 136.4
+  },
+  "gets": {
+   "name": "GETS (New Zealand)",
+   "region": "Asia-Pacific",
+   "method": "Public current-tenders list (all pages)",
+   "url": "https://www.gets.govt.nz/ExternalIndex.htm",
+   "status": "OK",
+   "rows_seen": 394,
+   "min_rows": 100,
+   "queries": 16,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 8.0
+  },
+  "ghaneps": {
+   "name": "Ghana GHANEPS current tenders",
+   "region": "Africa",
+   "method": "Public HTML list (ePPS displaytag)",
+   "url": "https://www.ghaneps.gov.gh/epps/quickSearchAction.do?searchSelect=6",
+   "status": "OK",
+   "rows_seen": 50,
+   "min_rows": 20,
+   "queries": 5,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 2.0
+  },
+  "hilma": {
+   "name": "Hilma (Finland)",
+   "region": "Europe",
+   "method": "Website's keyless search proxy (Azure Search OData), full window",
+   "url": "https://www.hankintailmoitukset.fi/fi/search",
+   "status": "OK",
+   "rows_seen": 483,
+   "min_rows": 150,
+   "queries": 1,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 2.8
+  },
+  "idb": {
+   "name": "IDB procurement notices",
+   "region": "Global/Donor",
+   "method": "Official CKAN datastore SQL API (keyless)",
+   "url": "https://www.iadb.org/en/how-we-can-work-together/procurement/procurement-projects/project-procurement",
+   "status": "OK",
+   "rows_seen": 30,
+   "min_rows": 5,
+   "queries": 1,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 0.3
+  },
+  "koneps": {
+   "name": "KONEPS (Korea, data.go.kr)",
+   "region": "Asia-Pacific",
+   "method": "Official data.go.kr Open API (key in KONEPS_API_KEY)",
+   "url": "https://www.g2b.go.kr/",
+   "status": "FAIL",
+   "rows_seen": 0,
+   "min_rows": 1,
+   "queries": 0,
+   "matched": 0,
+   "errors": [
+    "KONEPS_API_KEY not set"
+   ],
+   "notes": [
+    "window from 2026-11-02"
+   ],
+   "seconds": 0.0
+  },
+  "mercadopublico": {
+   "name": "Mercado Público (Chile)",
+   "region": "Americas",
+   "method": "Official API (ticket, optional) + public search page keyword render",
+   "url": "https://www.mercadopublico.cl/BuscarLicitacion",
+   "status": "OK",
+   "rows_seen": 17,
+   "min_rows": 1,
+   "queries": 12,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "MERCADOPUBLICO_TICKET not set: API leg skipped (free ticket at api.mercadopublico.cl); public keyword search only"
+   ],
+   "seconds": 29.1
+  },
+  "merx": {
+   "name": "MERX (Canada)",
+   "region": "Americas",
+   "method": "Public search page, keyword queries (plain HTML)",
+   "url": "https://www.merx.com/public/solicitations/open",
+   "status": "FAIL",
+   "rows_seen": 0,
+   "min_rows": 5,
+   "queries": 10,
+   "matched": 0,
+   "errors": [
+    "geophysical p1: HTTP 202",
+    "airborne survey p1: HTTP 202",
+    "aeromagnetic p1: HTTP 202",
+    "magnetic survey p1: HTTP 202",
+    "gravity survey p1: HTTP 202",
+    "radiometric p1: HTTP 202",
+    "electromagnetic survey p1: HTTP 202",
+    "LiDAR p1: HTTP 202",
+    "géophysique p1: HTTP 202",
+    "levé aéroporté p1: HTTP 202"
+   ],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 0.8
+  },
+  "nen": {
+   "name": "NEN (Czech Republic)",
+   "region": "Europe",
+   "method": "Headless render of public quick-search pages",
+   "url": "https://nen.nipez.cz/verejne-zakazky",
+   "status": "OK",
+   "rows_seen": 145,
+   "min_rows": 20,
+   "queries": 7,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 68.8
+  },
+  "nest": {
+   "name": "Tanzania NeST published tenders",
+   "region": "Africa",
+   "method": "Public page's GraphQL list query",
+   "url": "https://nest.go.tz/tenders/published-tenders",
+   "status": "OK",
+   "rows_seen": 258,
+   "min_rows": 30,
+   "queries": 2,
+   "matched": 1,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 2.6
+  },
+  "omantb": {
+   "name": "Oman Tender Board e-Tendering",
+   "region": "Middle East",
+   "method": "Public dashboard HTML (New Tenders, paged)",
+   "url": "https://etendering.tenderboard.gov.om/product/publicDash?viewFlag=NewTenders",
+   "status": "OK",
+   "rows_seen": 950,
+   "min_rows": 50,
+   "queries": 19,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "stopped at time budget after page 19"
+   ],
+   "seconds": 105.1
+  },
+  "pertamina": {
+   "name": "Pertamina procurement announcements",
+   "region": "Asia-Pacific",
+   "method": "Public announcement pages, headless render",
+   "url": "https://www.pertamina.com/en/pengadaan-umum",
+   "status": "OK",
+   "rows_seen": 12,
+   "min_rows": 4,
+   "queries": 2,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 17.3
+  },
+  "petronect": {
+   "name": "Petronect (Petrobras)",
+   "region": "Americas",
+   "method": "Public list page, headless render + on-page keyword search",
+   "url": "https://www.petronect.com.br/irj/go/km/docs/pccshrcontent/Site%20Content%20(Legacy)/Portal2018/pt/lista_licitacoes_publicadas_ft.html",
+   "status": "OK",
+   "rows_seen": 299,
+   "min_rows": 100,
+   "queries": 14,
+   "matched": 1,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 48.9
+  },
+  "philgeps": {
+   "name": "PhilGEPS (Philippines)",
+   "region": "Asia-Pacific",
+   "method": "Public open-opportunities keyword search (form)",
+   "url": "https://philgeps.gov.ph/Indexes/viewMoreOpenTenders",
+   "status": "OK",
+   "rows_seen": 204,
+   "min_rows": 10,
+   "queries": 25,
+   "matched": 1,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 30.3
+  },
+  "placsp": {
+   "name": "PLACSP (Spain)",
+   "region": "Europe",
+   "method": "Official ATOM syndication feed 643 (time-budgeted, newest first)",
+   "url": "https://contrataciondelestado.es/wps/portal/plataforma",
+   "status": "OK",
+   "rows_seen": 2741,
+   "min_rows": 500,
+   "queries": 6,
+   "matched": 1,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "time budget 600s reached after 6 pages; oldest entry read 2026-11-13T08:59:29.059+01:00"
+   ],
+   "seconds": 644.9
+  },
+  "pncp": {
+   "name": "PNCP (Brazil)",
+   "region": "Americas",
+   "method": "Official Consultation API v1 (keyless)",
+   "url": "https://pncp.gov.br/app/editais",
+   "status": "OK",
+   "rows_seen": 4131,
+   "min_rows": 200,
+   "queries": 91,
+   "matched": 1,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "Pregão - Eletrônico: time budget/rate limit; days not (fully) scanned: 2026-11-11..2026-11-12 (2 days)"
+   ],
+   "seconds": 421.4
+  },
+  "ppra": {
+   "name": "Pakistan PPRA e-PMS active tenders",
+   "region": "Asia/Middle East",
+   "method": "Public HTML list (paged)",
+   "url": "https://epms.ppra.gov.pk/public/tenders/active-tenders",
+   "status": "OK",
+   "rows_seen": 450,
+   "min_rows": 50,
+   "queries": 9,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 4.5
+  },
+  "qtenders": {
+   "name": "QTenders (Queensland)",
+   "region": "Asia-Pacific",
+   "method": "Public search, headless render (all open tenders)",
+   "url": "https://qtenders.hpw.qld.gov.au/search?keywords=&statuses=1",
+   "status": "OK",
+   "rows_seen": 110,
+   "min_rows": 40,
+   "queries": 6,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 51.3
+  },
+  "sam": {
+   "name": "SAM.gov (USA)",
+   "region": "Americas",
+   "method": "Official Opportunities API v2 (free key in SAM_API_KEY)",
+   "url": "https://sam.gov/search/?index=opp",
+   "status": "OK",
+   "rows_seen": 9,
+   "min_rows": 1,
+   "queries": 8,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-02"
+   ],
+   "seconds": 2.6
+  },
+  "secop": {
+   "name": "SECOP II (Colombia)",
+   "region": "Americas",
+   "method": "datos.gov.co Socrata SODA API (official open data, keyless)",
+   "url": "https://community.secop.gov.co/Public/Tendering/ContractNoticeManagement/Index",
+   "status": "OK",
+   "rows_seen": 97,
+   "min_rows": 1,
+   "queries": 1,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 7.0
+  },
+  "ted": {
+   "name": "TED (EU)",
+   "region": "Europe",
+   "method": "Official Search API v3 (keyless)",
+   "url": "https://ted.europa.eu/en/search",
+   "status": "OK",
+   "rows_seen": 86,
+   "min_rows": 1,
+   "queries": 2,
+   "matched": 2,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 1.4
+  },
+  "tenderimpulse": {
+   "name": "Tender Impulse",
+   "region": "Global",
+   "method": "Public keyword search (POST form) + country index page",
+   "url": "https://tenderimpulse.com/global-tenders",
+   "status": "OK",
+   "rows_seen": 194,
+   "min_rows": 10,
+   "queries": 30,
+   "matched": 22,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "first page only (more available) for: geophysical, Guadeloupe, Martinique, French Guiana"
+   ],
+   "seconds": 5.9
+  },
+  "tenderned": {
+   "name": "TenderNed (Netherlands)",
+   "region": "Europe",
+   "method": "Official public API (keyless), full window",
+   "url": "https://www.tenderned.nl/aankondigingen/overzicht",
+   "status": "OK",
+   "rows_seen": 430,
+   "min_rows": 200,
+   "queries": 5,
+   "matched": 1,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 2.4
+  },
+  "tendernews": {
+   "name": "TenderNews (India/global)",
+   "region": "Asia-Pacific",
+   "method": "Public keyword listing pages",
+   "url": "https://www.tendernews.com/tenders/latest-tender/geological-survey.html",
+   "status": "OK",
+   "rows_seen": 763,
+   "min_rows": 20,
+   "queries": 20,
+   "matched": 3,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 5.6
+  },
+  "tenderswa": {
+   "name": "Tenders WA (Western Australia)",
+   "region": "Asia-Pacific",
+   "method": "Public open-tender list",
+   "url": "https://www.tenders.wa.gov.au/watenders/index.do",
+   "status": "OK",
+   "rows_seen": 186,
+   "min_rows": 50,
+   "queries": 2,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 3.5
+  },
+  "udbud": {
+   "name": "udbud.dk (Denmark)",
+   "region": "Europe",
+   "method": "Website's keyless JSON search endpoint, all active notices",
+   "url": "https://udbud.dk/soeg",
+   "status": "OK",
+   "rows_seen": 2380,
+   "min_rows": 300,
+   "queries": 37,
+   "matched": 3,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 15.3
+  },
+  "ungm": {
+   "name": "UNGM (UN Global Marketplace)",
+   "region": "Global/Donor",
+   "method": "Public notice search (page's JSON POST)",
+   "url": "https://www.ungm.org/Public/Notice",
+   "status": "WARN",
+   "rows_seen": 2,
+   "min_rows": 10,
+   "queries": 37,
+   "matched": 0,
+   "errors": [
+    "only 2 rows (expected >= 10): page layout may have changed or portal is empty"
+   ],
+   "notes": [
+    "window from 2026-11-11"
+   ],
+   "seconds": 74.5
+  },
+  "utbod": {
+   "name": "Útboðsvefur / Útboð.is (Iceland)",
+   "region": "Europe",
+   "method": "Public open-tender listings (static HTML)",
+   "url": "https://utbodsvefur.is/",
+   "status": "OK",
+   "rows_seen": 77,
+   "min_rows": 20,
+   "queries": 2,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "utbod.is: no open tenders listed"
+   ],
+   "seconds": 1.9
+  },
+  "worldbank": {
+   "name": "World Bank procurement notices",
+   "region": "Global/Donor",
+   "method": "Search API v2 procnotices (keyless)",
+   "url": "https://projects.worldbank.org/en/projects-operations/procurement",
+   "status": "OK",
+   "rows_seen": 982,
+   "min_rows": 1,
+   "queries": 30,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "watch P506438: 0 notice(s) in window",
+    "watch P510607: 0 notice(s) in window"
+   ],
+   "seconds": 6.2
+  },
+  "zppa": {
+   "name": "Zambia ZPPA e-GP (latest tenders only)",
+   "region": "Africa",
+   "method": "Public home page 'Latest Tenders' block (full list is captcha-gated)",
+   "url": "https://eprocure.zppa.org.zm/epps/prepareCurrentOpportunities.do?currentType=cft",
+   "status": "OK",
+   "rows_seen": 10,
+   "min_rows": 5,
+   "queries": 1,
+   "matched": 0,
+   "errors": [],
+   "notes": [
+    "window from 2026-11-11",
+    "partial coverage: home page shows only the 10 newest tenders; full list is captcha-gated"
+   ],
+   "seconds": 2.2
+  }
+ },
+ "buckets": {
+  "new": [
+   {
+    "portal": "tenderimpulse",
+    "ref": "16086998",
+    "title": "Pre-qualification Announcement for the Cybersecurity Infrastructure Procurement Project of China Aero Geophysical and Remote Sensing Center for Natural Resources",
+    "url": "https://tenderimpulse.com/government-tenders/china/pre-qualification-announcement-for-the-cybersecurity-infrastructure-procurement-16086998",
+    "buyer": "",
+    "country": "China",
+    "published": "",
+    "deadline": "2026-11-19",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": true,
+     "terms": [
+      "aero geophys"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": ""
+   }
+  ],
+  "review": [
+   {
+    "portal": "tendernews",
+    "ref": "12455516261116",
+    "title": "Commissioning of the installation of certification of containers with RW based on the installation of the spectrometric MKS-01 Multirad with the gamma-spectrometric path MULTIRAD-gamma with the software LSRM SPORO Stereo",
+    "url": "https://www.tendernews.com/tenderdetail.aspx?ref=12455516261116&s=0",
+    "buyer": "",
+    "country": "Russian Federation",
+    "published": "2026-11-16",
+    "deadline": "2026-11-17",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "slugs": [
+      "gamma-ray-spectrometer"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "gamma spectrometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "software"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "TenderNews (India/global)",
+    "status_note": ""
+   },
+   {
+    "portal": "eshdhs",
+    "ref": "26PROC020195281",
+    "title": "ΠΑΡΟΧΗ ΥΠΗΡΕΣΙΩΝ ΣΥΜΒΟΥΛΟΥ ΓΙΑ ΤΗΝ ΥΠΟΒΟΛΗ ΦΑΚΕΛΟΥ ΑΞΙΟΠΟΙΗΣΗΣ ΤΟΥ ΙΑΜΑΤΙΚΟΥ ΦΥΣΙΚΟΥ ΠΟΡΟΥ ΙΑΜΑΤΙΚΗΣ ΠΗΓΗΣ ΛΟΥΤΡΑΚΙΟΥ ΓΙΑ ΠΟΣΙΘΕΡΑΠΕΙΑ",
+    "url": "https://cerpp.eprocurement.gov.gr/khmdhs-opendata/notice/attachment/26PROC020195281",
+    "buyer": "ΔΗΜΟΣ ΛΟΥΤΡΑΚΙΟΥ - ΠΕΡΑΧΩΡΑΣ - ΑΓΙΩΝ ΘΕΟΔΩΡΩΝ",
+    "country": "GR",
+    "published": "2026-11-13",
+    "deadline": "2026-11-20",
+    "description": "ΠΑΡΟΧΗ ΥΠΗΡΕΣΙΩΝ ΣΥΜΒΟΥΛΟΥ ΓΙΑ ΤΗΝ ΥΠΟΒΟΛΗ ΦΑΚΕΛΟΥ ΣΤΟ ΥΠΟΥΡΓΕΙΟ ΤΟΥΡΙΣΜΟΥ ΠΕΡΙ ΤΗΣ ΑΞΙΟΠΟΙΗΣΗΣ ΤΟΥ ΙΑΜΑΤΙΚΟΥ ΦΥΣΙΚΟΥ ΠΟΡΟΥ ΙΑΜΑΤΙΚΗΣ ΠΗΓΗΣ ΛΟΥΤΡΑΚΙΟΥ ΓΙΑ ΠΟΣΙΘΕΡΑΠΕΙΑ [Παροχή υπηρεσιών συμβούλου σε θέματα γεωλογίας και γεωφυσικής]",
+    "value": "30000.0 EUR",
+    "notice_type": "Πρόσκληση",
+    "language": "el",
+    "extra": {
+     "cpv": [
+      "71351200-5"
+     ],
+     "cancelled": false
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "γεωφυσικ"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": false,
+     "score": 3
+    },
+    "portal_name": "Greece KIMDIS (ESHDHS)",
+    "status_note": ""
+   },
+   {
+    "portal": "tendernews",
+    "ref": "5166616261114",
+    "title": "Geophysical survey, drilling, and building 32 solar-powered boreholes with water storage and distribution systems",
+    "url": "https://www.tendernews.com/tenderdetail.aspx?ref=5166616261114&s=0",
+    "buyer": "",
+    "country": "Sudan",
+    "published": "2026-11-14",
+    "deadline": "2026-11-24",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "slugs": [
+      "geophysical",
+      "geophysical-surveys"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "borehole"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "TenderNews (India/global)",
+    "status_note": ""
+   },
+   {
+    "portal": "dgmarket",
+    "ref": "117911047",
+    "title": "Supply and Delivery of Aerial Photography and LiDAR for a Period of 36 Months",
+    "url": "https://www2.dgmarket.com/Notice/117911047",
+    "buyer": "Department of Lands, Planning and Environment",
+    "country": "Australia",
+    "published": "2026-11-16",
+    "deadline": "2026-12-08",
+    "description": "",
+    "value": "0 AUD",
+    "notice_type": "Invitation for Bids",
+    "language": "English",
+    "extra": {
+     "cpv_lists": [
+      "71355000"
+     ]
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "aerial",
+      "lidar"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "aerial photograph",
+      "aerial photo"
+     ],
+     "in_title": true,
+     "score": 2
+    },
+    "portal_name": "dgMarket (CPV listing)",
+    "status_note": ""
+   },
+   {
+    "portal": "boamp",
+    "ref": "26-110756",
+    "title": "ACQUISITION ET TRAITEMENTS DE DONNÉES PAR LIDAR AÉROPORTÉ ET ORTHOPHOTOGRAPHIE EN FORÊT GUYANAISE",
+    "url": "https://www.boamp.fr/pages/avis/?q=idweb:26-110756",
+    "buyer": "Office National des Forets - Direction Territoriale de Guyane",
+    "country": "FR",
+    "published": "2026-11-15",
+    "deadline": "",
+    "description": "ACQUISITION ET TRAITEMENTS DE DONNÉES PAR LIDAR AÉROPORTÉ ET ORTHOPHOTOGRAPHIE EN FORÊT GUYANAISE | Prix | Offre technique | Le présent marché a pour objet l’acquisition et le traitement de données par lidar aéroporté et la production d’orthophotographies en forêt guyanaise.",
+    "value": "",
+    "notice_type": "Résultat de marché",
+    "language": "fr",
+    "extra": {
+     "descripteurs": [
+      "Ingénierie"
+     ],
+     "famille": "Marchés européens",
+     "dept": [
+      "973"
+     ]
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "aeroporte",
+      "lidar"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "orthophoto"
+     ],
+     "in_title": true,
+     "score": 2
+    },
+    "portal_name": "BOAMP (France)",
+    "status_note": ""
+   },
+   {
+    "portal": "tenderned",
+    "ref": "449422",
+    "title": "Independent Verification and Validation (IV&V) Radio Frequency (RF) Equipment",
+    "url": "https://www.tenderned.nl/aankondigingen/overzicht/449422",
+    "buyer": "Ministerie van Defensie",
+    "country": "NL",
+    "published": "2026-11-15",
+    "deadline": "2026-12-14",
+    "description": "The Contract involves the acquisition of IV&V RF Equipment, including Integrated Logistics Support (ILS), for the Electromagnetic Warfare (EW) unit of the RNLASF. \n\nThe RNLASF operates a fleet of rotary and fixed-wing aircraft. The aircrafts are equipped with Radio Frequency (RF) self-protection equipment. The EW unit supports functioning of this equipment.\n\nIn view of operational deployment, it is important for the EW unit to know the performance of its hardware and software to enhance its capabilities. The to be acquired IV&V RF Equipment will provide the EW unit better insight into performance of the RF self-protection equipment.\n\nTo maintain the safety during operational deployment of the aircraft of the RNLASF, the EW unit has to continue to enhance the performance of the RF self-protection. To be able to do this, new IV&V RF Equipment is required as the current equipment is outdated.\n\nThis Contract mainly contains delivery of an Integrated IV&V RF Equipment, consisting of the following products: one (1) Radio Frequency Signal Generator, two (2) Oscilloscopes, two (2) Signal Analyzers and two (2) Vector Network Analyzers. Additionally, ILS will be needed.",
+    "value": "",
+    "notice_type": "Aankondiging opdracht",
+    "language": "nl",
+    "extra": {
+     "kenmerk": 625114,
+     "code": "EF16"
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "aircraft",
+      "electromagnet",
+      "fixed wing",
+      "magnet",
+      "magnetic"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "software"
+     ],
+     "in_title": false,
+     "score": 1
+    },
+    "portal_name": "TenderNed (Netherlands)",
+    "status_note": ""
+   },
+   {
+    "portal": "pncp",
+    "ref": "01639869000143-1-000010/2026",
+    "title": "Contratação de solução tecnológica para a modernização da produção legislativa e administrativa da Câmara Municipal de São Roque do Canaã/ES, mediante tramitação eletrônica de processos.",
+    "url": "https://pncp.gov.br/app/editais/01639869000143/2026/10",
+    "buyer": "CAMARA MUNICIPAL DE SAO ROQUE DE CANAA",
+    "country": "Brazil",
+    "published": "2026-11-12",
+    "deadline": "2026-11-30",
+    "description": "Contratação de solução tecnológica para a modernização da produção legislativa e administrativa da Câmara Municipal de São Roque do Canaã/ES, mediante tramitação eletrônica de processos. | O presente processo tem por objeto a contratação de empresa especializada para a disponibilização de solução tecnológica de processo eletrônico destinada à modernização da produção legislativa e administrativa da Câmara Municipal de São Roque do Canaã, em regime de locação de licença de uso, hospedada em ambiente de nuvem pela contratada, compreendendo os serviços de ativação (implantação e treinamentos), de sustentação (locação da licença com suporte técnico remoto e manutenção, e hospedagem da base de dados e do software) e os serviços sob demanda de modelagem de processos, conforme as condições, especificações e quantitativos estabelecidos.",
+    "value": "",
+    "notice_type": "tender",
+    "language": "pt",
+    "extra": {
+     "modalidade": "Pregão - Eletrônico",
+     "uf": "ES",
+     "municipio": "São Roque do Canaã",
+     "situacao": "Divulgada no PNCP",
+     "processo": "304/2026",
+     "link_origem": "https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/acompanhamento-compra?compra=93364205000012026"
+    },
+    "match": {
+     "tier": "licence",
+     "airborne": false,
+     "terms": [
+      "tem"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "software"
+     ],
+     "in_title": false,
+     "score": 0
+    },
+    "portal_name": "PNCP (Brazil)",
+    "status_note": ""
+   }
+  ],
+  "deadline_changed": [],
+  "possible_duplicate": [
+   {
+    "portal": "tendernews",
+    "ref": "15183516261116",
+    "title": "High Purity Germanium (HPGe) Gamma ray spectrometry system",
+    "url": "https://www.tendernews.com/tenderdetail.aspx?ref=15183516261116&s=0",
+    "buyer": "",
+    "country": "India / Maharashtra",
+    "published": "2026-11-16",
+    "deadline": "2026-11-16",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "slugs": [
+      "gamma-ray-spectrometer"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "gamma ray spectrometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "hpge",
+      "germanium"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "TenderNews (India/global)",
+    "status_note": "same title as tendernews:1863716261113 (re-tender or mirror? check)"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16322345",
+    "title": "Construction/Installation of 04 Nos. Medium Depth New Piezometers at different places in Mirzapur District under the Jurisdiction of the Ground Water Department, Geophysical Survey",
+    "url": "https://tenderimpulse.com/government-tenders/india/construction-installation-of-04-nos-medium-depth-new-piezometers-at-different-pl-16322345",
+    "buyer": "",
+    "country": "India",
+    "published": "",
+    "deadline": "2026-11-18",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical survey"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "piezometer"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "same title as firsttender:2611124158550 (re-tender or mirror? check)"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16404117",
+    "title": "Geophysical Survey, drilling of Mihilu borehole and complete construction of Mihilu water supply project in Rufiji District",
+    "url": "https://tenderimpulse.com/government-tenders/tanzania/geophysical-survey-drilling-of-mihilu-borehole-and-complete-construction-of-mihi-16404117",
+    "buyer": "",
+    "country": "Tanzania",
+    "published": "",
+    "deadline": "2026-11-18",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical survey"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "borehole"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "same title as nest:TR140/017/2026/2027/W/04 (re-tender or mirror? check)"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16140482",
+    "title": "Bid for the provision of Geotechnical and Geophysical Survey for Multi-Purpose Reactor Siting (MPR)",
+    "url": "https://tenderimpulse.com/government-tenders/south-africa/bid-for-the-provision-of-geotechnical-and-geophysical-survey-for-multi-purpose-r-16140482",
+    "buyer": "",
+    "country": "South Africa",
+    "published": "",
+    "deadline": "2026-12-02",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical survey",
+      "geophysical"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "geotechnical"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "same title as etenderza:FIN-SCM-TEN-0257 (re-tender or mirror? check)"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "14868343",
+    "title": "Geophysical Survey of Wind Farm Search Area 6/7",
+    "url": "https://tenderimpulse.com/government-tenders/netherlands/geophysical-survey-of-wind-farm-search-area-6-7-14868343",
+    "buyer": "",
+    "country": "Netherlands",
+    "published": "",
+    "deadline": "2026-12-07",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical survey",
+      "geophysical"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "wind farm"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "same title as tenderimpulse:14833344 (re-tender or mirror? check)",
+    "mirrors": [
+     "https://tenderimpulse.com/government-tenders/netherlands/geophysical-survey-of-wind-farm-search-area-6-7-14950548"
+    ]
+   }
+  ],
+  "awards": [
+   {
+    "portal": "ted",
+    "ref": "794753-2026",
+    "title": "Germany – Geotechnical engineering services – SV-TDR-260616-003 - LiDAR-Befliegung",
+    "url": "https://ted.europa.eu/en/notice/-/detail/794753-2026",
+    "buyer": "SWM Infrastruktur GmbH & Co. KG",
+    "country": "DEU",
+    "published": "2026-11-16",
+    "deadline": "",
+    "description": "Die SWM Infrastruktur GmbH & Co.KG (SWMI) planen den Ersatzneubau der 110-kV-Freileitung zwischen dem Umspannwerk Uppenborn I (UPP 1) und dem Hauptumspannwerk Föhring (FOE) in Unterföhring inklusive des Abzweigs Moosburg (MBG). Gegenstand dieser Ausschreibung ist die Durchführung einer luftgestützten LiDAR- und Bildbefliegung zur Bestandsaufnahme des Projektgebietes für den Ersatzneubau zwischen UPP 1 und FOE. Die Fläche des Projektgebietes beträgt ca. 22 km². Die Daten dienen als Grundlage für Planung, Trassierung, Variantenuntersuchung sowie Abstandsuntersuchungen. Ergebnis der angefragten Leistung sind drei Datensätze: 1. Georeferenzierte, klassifizierte LiDAR Punktwolken des Projektgebietes 2. Digitale Orthofotos des Projektgebietes (Format: GeoTIFF-Files) 3. Schrägbildaufnahmen aller Maste der Bestandsleitung inkl. Bericht im PDF-Format",
+    "value": "",
+    "notice_type": "award",
+    "language": "",
+    "extra": {
+     "cpv": [
+      "71332000",
+      "71353000",
+      "71332000",
+      "71353000"
+     ]
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "befliegung",
+      "lidar",
+      "luftgestutzt"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "geotechnical"
+     ],
+     "in_title": true,
+     "score": 2
+    },
+    "portal_name": "TED (EU)"
+   }
+  ],
+  "drone_only": [
+   {
+    "portal": "tenderimpulse",
+    "ref": "16021047",
+    "title": "Public Tender Announcement for UAV Measurement System - Airborne LiDAR System",
+    "url": "https://tenderimpulse.com/government-tenders/china/public-tender-announcement-for-uav-measurement-system-airborne-lidar-system-16021047",
+    "buyer": "",
+    "country": "China",
+    "published": "",
+    "deadline": "2026-11-18",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "airborne LiDAR"
+     ]
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "airborne",
+      "lidar"
+     ],
+     "drone_only": true,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse"
+   },
+   {
+    "portal": "firsttender",
+    "ref": "261116450800",
+    "title": "Lidar aerial lidar dgps total station method architectural and landscape survey cadastral survey photogrammetry survey drone surve",
+    "url": "https://www.firsttender.com/tenders-detail-261116450800.html",
+    "buyer": "ARCHAEOLOGICAL SURVEY OF INDIA",
+    "country": "India",
+    "published": "2026-11-16",
+    "deadline": "2026-11-30",
+    "description": "lidar aerial lidar dgps total station method architectural and landscape survey cadastral survey photogrammetry survey drone surve",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "tender_id": "GEM-2026-B-8276555",
+     "region": "tamil nadu",
+     "pages": [
+      "lidar-tenders",
+      "lidar-survey-tenders",
+      "aerial-survey-tenders"
+     ]
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "aerial",
+      "lidar"
+     ],
+     "drone_only": true,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "FirstTender (India)"
+   },
+   {
+    "portal": "philgeps",
+    "ref": "132845",
+    "title": "25GDO0011 PR NO 2026-11-0145 Procurement of Unmanned Aerial Vehicle (UAV) Multirotor with LIDAR Light Detection and Ranging and Post Processing Laptop under the Planning and Design Section Rizal 2nd DEO",
+    "url": "https://philgeps.gov.ph/Indexes/viewLiveTenderDetails/132845",
+    "buyer": "DEPARTMENT OF PUBLIC WORKS AND HIGHWAYS - RIZAL II DEO",
+    "country": "Philippines",
+    "published": "2026-11-12",
+    "deadline": "2026-12-01",
+    "description": "",
+    "value": "",
+    "notice_type": "Competitive Bidding (Public Bidding)",
+    "language": "",
+    "extra": {
+     "classification": "Goods",
+     "keywords": [
+      "aerial",
+      "lidar"
+     ]
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "aerial",
+      "lidar"
+     ],
+     "drone_only": true,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "PhilGEPS (Philippines)"
+   }
+  ],
+  "in_tracker": [],
+  "seen": [
+   {
+    "portal": "eshdhs",
+    "ref": "26PROC020174430",
+    "title": "ΠΡΟΣΚΛΗΣΗ ΥΠΟΒΟΛΗΣ ΠΡΟΣΦΟΡΑΣ ΠΑΡΟΧΗΣ ΓΕΩΦΥΣΙΚΩΝ ΥΠΗΡΕΣΙΩΝ",
+    "url": "https://cerpp.eprocurement.gov.gr/khmdhs-opendata/notice/attachment/26PROC020174430",
+    "buyer": "ΕΛΛΗΝΙΚΗ ΔΙΑΧΕΙΡΙΣΤΙΚΗ ΕΤΑΙΡΙΑ ΥΔΡΟΓΟΝΑΝΘΡΑΚΩΝ ΑΕ",
+    "country": "GR",
+    "published": "2026-11-11",
+    "deadline": "2026-11-16",
+    "description": "ΠΡΟΣΚΛΗΣΗ ΥΠΟΒΟΛΗΣ ΠΡΟΣΦΟΡΑΣ ΠΑΡΟΧΗΣ ΓΕΩΦΥΣΙΚΩΝ ΥΠΗΡΕΣΙΩΝ [Υπηρεσίες γεωφυσικών ερευνών]",
+    "value": "30000.0 EUR",
+    "notice_type": "Πρόσκληση",
+    "language": "el",
+    "extra": {
+     "cpv": [
+      "71351710-3"
+     ],
+     "cancelled": false
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "γεωφυσικ"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "Greece KIMDIS (ESHDHS)",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "eshdhs",
+    "ref": "26PROC020169120",
+    "title": "ΠΡΟΣΚΛΗΣΗ ΕΚΔΗΛΩΣΗΣ ΕΝΔΙΑΦΕΡΟΝΤΟΣ ΥΠΟΒΟΛΗΣ ΠΡΟΣΦΟΡΑΣ ΠΡΟΜΗΘΕΙΑΣ ΜΙΑΣ (1) ΕΠΙΤΟΙΧΙΑΣ ΗΛΕΚΤΡΟΜΑΓΝΗΤΙΚΗΣ ΑΝΤΛΙΑΣ ΔΟΣΟΜΕΤΡΗΣΗΣ",
+    "url": "https://cerpp.eprocurement.gov.gr/khmdhs-opendata/notice/attachment/26PROC020169120",
+    "buyer": "ΑΣΤΙΚΗ ΑΝΑΠΤΥΞΗ ΔΗΜΟΤΙΚΗ ΑΝΩΝΥΜΗ ΕΤΑΙΡΕΙΑ",
+    "country": "GR",
+    "published": "2026-11-11",
+    "deadline": "2026-11-16",
+    "description": "Η ΑΣΤΙΚΗ ΑΝΑΠΤΥΞΗ ΜΟΝΟΜΕΤΟΧΙΚΗ ΔΗΜΟΤΙΚΗ Α.Ε. ΤΡΙΚΑΛΩΝ, ΣΤΟ ΠΛΑΙΣΙΟ ΤΗΣ ΔΙΑΧΕΙΡΙΣΗΣ ΚΑΙ ΛΕΙΤΟΥΡΓΙΑΣ ΤΟΥ ΔΗΜΟΤΙΚΟΥ ΚΟΛΥΜΒΗΤΗΡΙΟΥ ΣΤΟ ΑΘΛΗΤΙΚΟ ΠΑΡΚΟ ΑΓΙΟΥ ΓΕΩΡΓΙΟΥ, ΚΡΙΝΕΙ ΑΝΑΓΚΑΙΑ ΤΗΝ ΠΡΟΜΗΘΕΙΑ ΜΙΑΣ (1) ΕΠΙΤΟΙΧΙΑΣ ΗΛΕΚΤΡΟΜΑΓΝΗΤΙΚΗΣ ΑΝΤΛΙΑΣ ΔΟΣΟΜΕΤΡΗΣΗΣ, ΓΙΑ ΤΗΝ ΚΑΛΥΨΗ ΤΩΝ ΑΝΑΓΚΩΝ ΤΟΥ ΣΥΣΤΗΜΑΤΟΣ ΕΠΕΞΕΡΓΑΣΙΑΣ ΚΑΙ ΧΗΜΙΚΗΣ ΡΥΘΜΙΣΗΣ ΤΟΥ ΝΕΡΟΥ ΤΗΣ ΚΟΛΥΜΒΗΤΙΚΗΣ ΔΕΞΑΜΕΝΗΣ. [Αντλίες δοσιμέτρησης]",
+    "value": "306.15 EUR",
+    "notice_type": "Πρόσκληση",
+    "language": "el",
+    "extra": {
+     "cpv": [
+      "42122230-1"
+     ],
+     "cancelled": false
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "ηλεκτρομαγνητικ"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "Greece KIMDIS (ESHDHS)",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "15569441",
+    "title": "Implementation of a helicopter-borne gamma-ray spectrometry and magnetism survey in Guadeloupe",
+    "url": "https://tenderimpulse.com/government-tenders/france/implementation-of-a-helicopter-borne-gamma-ray-spectrometry-and-magnetism-survey-15569441",
+    "buyer": "",
+    "country": "France",
+    "published": "",
+    "deadline": "2026-11-16",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "magnetism",
+      "helicopter-borne",
+      "Guadeloupe"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": true,
+     "terms": [
+      "gamma ray spectrometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "15574194",
+    "title": "Implementation of a helicopter-borne gamma-ray spectrometry and magnetism survey in Guadeloupe",
+    "url": "https://tenderimpulse.com/government-tenders/france/implementation-of-a-helicopter-borne-gamma-ray-spectrometry-and-magnetism-survey-15574194",
+    "buyer": "",
+    "country": "France",
+    "published": "",
+    "deadline": "2026-11-16",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "magnetism",
+      "helicopter-borne",
+      "Guadeloupe"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": true,
+     "terms": [
+      "gamma ray spectrometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "firsttender",
+    "ref": "2611134201830",
+    "title": "Providers to carry out multi sensor aero geophysical surveys magnetic gradiometer and radiometric for blocks 10 amp 12 gdb",
+    "url": "https://www.firsttender.com/tenders-detail-2611134201830.html",
+    "buyer": "GEOLOGICAL SURVEY OF INDIA",
+    "country": "India",
+    "published": "2026-11-13",
+    "deadline": "2026-11-19",
+    "description": "providers to carry out multi sensor aero geophysical surveys magnetic gradiometer and radiometric for blocks 10 amp 12 gdb",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "tender_id": "GEM-2026-B-7729912",
+     "region": "karnataka",
+     "pages": [
+      "geophysical-tenders",
+      "geophysical-survey-tenders",
+      "geophysics-tenders",
+      "aero-geophysical-tenders",
+      "magnetic-survey-tenders",
+      "magnetic-gradiometer-tenders",
+      "radiometric-tenders"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": true,
+     "terms": [
+      "aero geophys",
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "FirstTender (India)",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16356226",
+    "title": "Acquisition of a non-exclusive license to use raw and processed aeromagnetic geophysical data from the Pelotas Basin, including gravimetric and magnetometric data.",
+    "url": "https://tenderimpulse.com/government-tenders/brazil/acquisition-of-a-non-exclusive-license-to-use-raw-and-processed-aeromagnetic-geo-16356226",
+    "buyer": "",
+    "country": "Brazil",
+    "published": "",
+    "deadline": "2026-12-01",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "aeromagnetic",
+      "gravimetric"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": true,
+     "terms": [
+      "aeromagnet",
+      "magnetometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16368054",
+    "title": "Deep geophysical survey to be conducted in an area of ​​2233 hectares, including 260 microgravity, 20 SPAC, and 22 ERT studies, for use in the Bingöl Province Earthquake Maste",
+    "url": "https://tenderimpulse.com/government-tenders/turkey/deep-geophysical-survey-to-be-conducted-in-an-area-of-2233-hectares-including-26-16368054",
+    "buyer": "",
+    "country": "Turkey",
+    "published": "",
+    "deadline": "2026-12-03",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical survey"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16405992",
+    "title": "CZT Gamma Spectrometry System",
+    "url": "https://tenderimpulse.com/government-tenders/india/czt-gamma-spectrometry-system-16405992",
+    "buyer": "",
+    "country": "India",
+    "published": "",
+    "deadline": "2026-12-05",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "gamma spectrometry",
+      "gamma-spectrometry"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "gamma spectrometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16052360",
+    "title": "Conducting industrial geophysical surveys and explosive works in the wells of structural subdivisions of AT «Ukrnafta»",
+    "url": "https://tenderimpulse.com/government-tenders/ukraine/conducting-industrial-geophysical-surveys-and-explosive-works-in-the-wells-of-st-16052360",
+    "buyer": "",
+    "country": "Ukraine",
+    "published": "",
+    "deadline": "2026-11-16",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "explosive"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "firsttender",
+    "ref": "2611124158550",
+    "title": "Construction installation of 04 nos medium depth new piezometers at different places in mirzapur district under the jurisdiction of the ground water department geophysical survey division mirzapur",
+    "url": "https://www.firsttender.com/tenders-detail-2611124158550.html",
+    "buyer": "Central Ground Water Board",
+    "country": "India",
+    "published": "2026-11-12",
+    "deadline": "2026-11-18",
+    "description": "construction installation of 04 nos medium depth new piezometers at different places in mirzapur district under the jurisdiction of the ground water department geophysical survey division mirzapur",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "tender_id": "2026_UPGWD_1204016_2",
+     "region": "uttar pradesh",
+     "pages": [
+      "geophysical-tenders",
+      "geophysical-survey-tenders",
+      "geophysics-tenders"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "piezometer"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "FirstTender (India)",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "firsttender",
+    "ref": "2611124158560",
+    "title": "Construction installation of 03 nos medium depth new piezometers at different places in sant ravidas nagar bhadohi district under the jurisdiction of the ground water department geophysical survey",
+    "url": "https://www.firsttender.com/tenders-detail-2611124158560.html",
+    "buyer": "Central Ground Water Board",
+    "country": "India",
+    "published": "2026-11-12",
+    "deadline": "2026-11-18",
+    "description": "construction installation of 03 nos medium depth new piezometers at different places in sant ravidas nagar bhadohi district under the jurisdiction of the ground water department geophysical survey",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "tender_id": "2026_UPGWD_1204047_2",
+     "region": "uttar pradesh",
+     "pages": [
+      "geophysical-tenders",
+      "geophysical-survey-tenders",
+      "geophysics-tenders"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "piezometer"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "FirstTender (India)",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "nest",
+    "ref": "TR140/017/2026/2027/W/04",
+    "title": "Geophysical Survey, drilling of Mihilu borehole and complete construction of Mihilu water supply project  in Rufiji District",
+    "url": "https://nest.go.tz/tenders/published-tenders",
+    "buyer": "RUWASA - PWANI REGIONAL OFFICE",
+    "country": "Tanzania",
+    "published": "2026-11-11",
+    "deadline": "2026-11-18",
+    "description": "Works | Small Works | TENDER",
+    "value": "",
+    "notice_type": "tender",
+    "language": "en",
+    "extra": {
+     "uuid": "967a3bd0-7e41-4978-9895-4a5ef32ad3f5",
+     "lots": 1
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "borehole"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tanzania NeST published tenders",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16242818",
+    "title": "Submission of 3 radiometric survey and contamination measuring devices",
+    "url": "https://tenderimpulse.com/government-tenders/syria/submission-of-3-radiometric-survey-and-contamination-measuring-devices-16242818",
+    "buyer": "",
+    "country": "Syria",
+    "published": "",
+    "deadline": "2026-11-19",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "radiometric survey"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "radiometric survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "measuring device",
+      "contamination"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "ezamowienia",
+    "ref": "2026/BZP 00535051/01",
+    "title": "Przegląd i konserwacje urządzeń radiometrycznych zlokalizowanych w punktach kontrolnych DPG Krościenko, DPG Korczowa, DPG Medyka, DPG Budomierz, KPG Medyka, Port Lotniczy Rzeszów-Jasionka",
+    "url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08df40a9-c4f0-6bc0-c1c5-d50001940d86",
+    "buyer": "ZAKŁAD OBSŁUGI PRZEJŚĆ GRANICZNYCH W KORCZOWEJ",
+    "country": "PL",
+    "published": "2026-11-12",
+    "deadline": "2026-11-20",
+    "description": "CPV 38341000-7 (Aparatura do mierzenia promieniowania); Services",
+    "value": "",
+    "notice_type": "ContractNotice",
+    "language": "pl",
+    "extra": {
+     "cpv": "38341000-7 (Aparatura do mierzenia promieniowania)",
+     "tenderId": "ocds-148610-467631ec-f496-4f61-8457-cdd4bdea7f4a",
+     "bzp": "2026/BZP 00535051"
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "lotnicz",
+      "radiometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "e-Zamówienia BZP (Poland)",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "15834568",
+    "title": "This consultation concerns the supply, installation, and commissioning of a Hyperpure Germanium detector for gamma spectrometry. ENSICAEN is a public engineering school specializin",
+    "url": "https://tenderimpulse.com/government-tenders/france/this-consultation-concerns-the-supply-installation-and-commissioning-of-a-hyperp-15834568",
+    "buyer": "",
+    "country": "France",
+    "published": "",
+    "deadline": "2026-11-23",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "gamma spectrometry",
+      "gamma-spectrometry"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "gamma spectrometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "germanium",
+      "detector"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "15843276",
+    "title": "Supply, installation and commissioning of a Hyper Pure Germanium detector for gamma spectrometry",
+    "url": "https://tenderimpulse.com/government-tenders/france/supply-installation-and-commissioning-of-a-hyper-pure-germanium-detector-for-gam-15843276",
+    "buyer": "",
+    "country": "France",
+    "published": "",
+    "deadline": "2026-11-23",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "gamma spectrometry",
+      "gamma-spectrometry"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "gamma spectrometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "germanium",
+      "detector"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "15908476",
+    "title": "Maintenance of geophysical data processing software – Techlog, Lot 09-1 (DV-3730/26-ĐVL-MSV)",
+    "url": "https://tenderimpulse.com/government-tenders/vietnam/maintenance-of-geophysical-data-processing-software-techlog-lot-09-1-dv-3730-26-15908476",
+    "buyer": "",
+    "country": "Vietnam",
+    "published": "",
+    "deadline": "2026-11-26",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical data processing"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "software"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16057688",
+    "title": "Prophylaxis Executive Order: Contract for airborne geophysical data collection",
+    "url": "https://tenderimpulse.com/government-tenders/denmark/prophylaxis-executive-order-contract-for-airborne-geophysical-data-collection-16057688",
+    "buyer": "",
+    "country": "Denmark",
+    "published": "",
+    "deadline": "2026-11-29",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "airborne geophysical",
+      "geophysical"
+     ]
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "airborne",
+      "geophys"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "14833344",
+    "title": "Geophysical Survey of Wind Farm Search Area 6/7",
+    "url": "https://tenderimpulse.com/government-tenders/netherlands/geophysical-survey-of-wind-farm-search-area-6-7-14833344",
+    "buyer": "",
+    "country": "Netherlands",
+    "published": "",
+    "deadline": "2026-12-07",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical survey",
+      "geophysical"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "wind farm"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16320336",
+    "title": "HPGe detector based gamma spectrometry system along with all required accessories",
+    "url": "https://tenderimpulse.com/government-tenders/india/hpge-detector-based-gamma-spectrometry-system-along-with-all-required-accessorie-16320336",
+    "buyer": "",
+    "country": "India",
+    "published": "",
+    "deadline": "2026-12-09",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "gamma spectrometry",
+      "gamma-spectrometry"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "gamma spectrometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "hpge",
+      "detector"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "ted",
+    "ref": "791594-2026",
+    "title": "Belgium – Aerial mapping services – ARC-26-0039 Raamovereenkomst laseraltimetrische opmetingen (LiDAR) van de bevaarbare waterlopen en aanhorigheden in beheer bij afdeling Regio Centraal van De Vlaamse Waterweg nv",
+    "url": "https://ted.europa.eu/en/notice/-/detail/791594-2026",
+    "buyer": "De Vlaamse Waterweg nv",
+    "country": "BEL",
+    "published": "2026-11-13",
+    "deadline": "2026-12-14",
+    "description": "In kader van deze raamovereenkomst kunnen de volgende types van diensten besteld worden: - De periodieke uitvoering van topografische opmetingen van de betrokken waterlopen, slikken en schorren in het kader van de geïntegreerde monitoring van het Schelde-estuarium door middel van laseraltimetrische meetvluchten met een minimale puntendichtheid van 8 punten/m². Tijdens deze opmetingen worden eveneens de in werking zijnde en toekomstige overstromingsgebieden volgens het meest wenselijke alternatief van het geactualiseerde Sigmaplan en het projectgebied van de Demervallei opgemeten. - Een eventuele extra laseraltimetrische LiDAR-opname van één of meerdere waterlopen, of deel van een waterloop binnen het werkingsgebied van afdeling Regio Centraal (ARC); gelijktijdig met de periodieke vluchten of op een ander tijdstip in het jaar. De betrokken waterlopen zijn de volgende bevaarbare waterlopen: Beneden-Zeeschelde afwaarts Wintam, Boven-Zeeschelde opwaarts Wintam, Rupel, Durme, Beneden-Nete, Nete-afleiding, Beneden-Dijle, Beneden-Zenne, Boven-Zenne, Zenne-afleiding en de bovenlopen: Kleine Nete, Grote Nete, Boven-Dijle, Dijle-afleiding, Dijledoortocht en Demer in het beheer bij afdeling Regio Centraal (ARC). Zie paragraaf 1.2 van de technische bepalingen voor een uitgebreide gebiedsomschrijving. De contouren van de waterlopen met inbegrip van de overstromingsgebieden en het projectgebied Demervallei worden aangeleverd in een .gpkg-bestand. Dit bestand bevat alle contouren van de bet",
+    "value": "",
+    "notice_type": "cn-standard",
+    "language": "",
+    "extra": {
+     "cpv": [
+      "71354200",
+      "60440000",
+      "71354200",
+      "60440000"
+     ]
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "aerial",
+      "lidar"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "TED (EU)",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "16368174",
+    "title": "Preparation of Geological, Geotechnical, and Geophysical Survey Reports for Mass Housing Projects to be Constructed Across Türkiye (17th Package Service Procurement)",
+    "url": "https://tenderimpulse.com/government-tenders/turkey/preparation-of-geological-geotechnical-and-geophysical-survey-reports-for-mass-h-16368174",
+    "buyer": "",
+    "country": "Turkey",
+    "published": "",
+    "deadline": "2026-12-15",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "geophysical survey"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "geophysical survey"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "geotechnical"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "tenderimpulse",
+    "ref": "14978051",
+    "title": "AtoMIc-based Quantum magnetometry meets Ultrasound for Medical Early Detection",
+    "url": "https://tenderimpulse.com/government-tenders/belgium/atomic-based-quantum-magnetometry-meets-ultrasound-for-medical-early-detection-14978051",
+    "buyer": "",
+    "country": "Belgium",
+    "published": "",
+    "deadline": "2028-04-30",
+    "description": "",
+    "value": "",
+    "notice_type": "tender",
+    "language": "",
+    "extra": {
+     "queries": [
+      "magnetometry"
+     ]
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "magnetometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [
+      "quantum"
+     ],
+     "in_title": true,
+     "score": 3
+    },
+    "portal_name": "Tender Impulse",
+    "status_note": "first seen 2026-11-13"
+   },
+   {
+    "portal": "petronect",
+    "ref": "7004687581",
+    "title": "Aquisição de licença de uso de dados...",
+    "url": "https://www.petronect.com.br/irj/go/km/docs/pccshrcontent/Site%20Content%20(Legacy)/Portal2018/pt/lista_licitacoes_publicadas_ft.html#7004687581",
+    "buyer": "Petróleo Brasileiro S. A.",
+    "country": "Brazil",
+    "published": "2026-11-09",
+    "deadline": "2026-12-01",
+    "description": "LICENÇA USO DADOS GEOFÍS. Ñ EXCLUS. RJ; LIC AERO GRAVMAG NA BACIA DE PELOTAS",
+    "value": "",
+    "notice_type": "tender",
+    "language": "pt",
+    "extra": {
+     "sub_status": "Recebimento de Propostas",
+     "scope": "Nacional",
+     "keyword_hits": [
+      "geof",
+      "magnet",
+      "gravim",
+      "gravmag",
+      "aerolev"
+     ]
+    },
+    "match": {
+     "tier": "licence",
+     "airborne": false,
+     "terms": [
+      "geofis"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": false,
+     "score": 1
+    },
+    "portal_name": "Petronect (Petrobras)",
+    "status_note": "first seen 2026-11-13"
+   }
+  ],
+  "closed": [
+   {
+    "portal": "placsp",
+    "ref": "UGR/2026/0079",
+    "title": "FEDER-EQC2024-008586-P para suministro de dos GPS GNSS con estación total y magnetómetro multicanal.",
+    "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FWTP36WEodU7%2B9FIQYNjeQ%3D%3D",
+    "buyer": "Rectorado de la Universidad de Granada",
+    "country": "ES",
+    "published": "2026-11-13",
+    "deadline": "2026-09-04",
+    "description": "Id licitación: UGR/2026/0079; Órgano de Contratación: Rectorado de la Universidad de Granada; Importe: 91896.27 EUR; Estado: EV | CPV 38112100,38260000",
+    "value": "111194.49 EUR",
+    "notice_type": "pendiente de adjudicación",
+    "language": "es",
+    "extra": {
+     "cpv": [
+      "38112100",
+      "38260000"
+     ],
+     "updated": "2026-11-13T12:40:32.177+01:00",
+     "placsp_id": "20120693"
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": false,
+     "terms": [
+      "magnetometr"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "PLACSP (Spain)"
+   }
+  ],
+  "old": [
+   {
+    "portal": "udbud",
+    "ref": "00752814-2026",
+    "title": "Profylaksebekendtgørelse: Kontrakt vedr. luftbåren geofysisk dataindsamling",
+    "url": "https://udbud.dk/detaljevisning?noticeId=a89be903-b55d-4041-81fb-2a5ff5935039&noticeVersion=01&noticePublicationNumber=00752814-2026",
+    "buyer": "Miljøstyrelsen",
+    "country": "DK",
+    "published": "2026-10-30",
+    "deadline": "",
+    "description": "Miljøstyrelsen skal have udført luftbåren geofysisk dataindsamling (prospektering) til brug for styrelsens kortlægning af geologi og grundvand i Danmark. [CPV 71351710 Geofysisk prospektering]",
+    "value": "",
+    "notice_type": "Forudgående underretning om direkte tildeling",
+    "language": "da",
+    "extra": {
+     "cpv": [
+      "71351710"
+     ],
+     "subtype": "Bekendtgørelse med henblik på frivillig forudgående gennemsigtighed – det generelle direktiv",
+     "noticeId": "a89be903-b55d-4041-81fb-2a5ff5935039"
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": true,
+     "terms": [
+      "geofysisk dataindsamling",
+      "luftbaren geofysisk"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": true,
+     "score": 4
+    },
+    "portal_name": "udbud.dk (Denmark)"
+   },
+   {
+    "portal": "udbud",
+    "ref": "00584162-2026",
+    "title": "Consulting regarding an instrument definition and a survey with an air-ship",
+    "url": "https://udbud.dk/detaljevisning?noticeId=f619935f-1e84-4785-957c-6a5013f97e92&noticeVersion=01&noticePublicationNumber=00584162-2026",
+    "buyer": "Danmarks Tekniske Universitet - DTU",
+    "country": "DK",
+    "published": "2026-08-24",
+    "deadline": "",
+    "description": "DTU requires an operator to design, plan and execute an airborne gravity survey using an airship plat-form. This action is planned within the EU Horizon Europe project called EQUIP-G, where a new quan-tum gravity sensor will be procured and delivered by ultimo 2027 and the survey carried out in fall 2028. The operator will also engage in the identification of possible instrument requirements related to the airship platform and support the design and certification process in order to meet the require-ments. [CPV 60423000 Charterflyvning]",
+    "value": "",
+    "notice_type": "Resultater",
+    "language": "da",
+    "extra": {
+     "cpv": [
+      "60423000"
+     ],
+     "subtype": "Bekendtgørelse om indgåede kontrakter – det generelle direktiv, standardordningen",
+     "noticeId": "f619935f-1e84-4785-957c-6a5013f97e92"
+    },
+    "match": {
+     "tier": "strong",
+     "airborne": true,
+     "terms": [
+      "airborne gravity"
+     ],
+     "drone_only": false,
+     "negative_hints": [],
+     "in_title": false,
+     "score": 3
+    },
+    "portal_name": "udbud.dk (Denmark)"
+   },
+   {
+    "portal": "udbud",
+    "ref": "00637524-2026",
+    "title": "DT-AG.R10 Rammeaftale om luftbårne ydelser, ortofoto og punktskyer",
+    "url": "https://udbud.dk/detaljevisning?noticeId=f7ec8ac9-ca46-4e30-ab6f-7066e78c135c&noticeVersion=01&noticePublicationNumber=00637524-2026",
+    "buyer": "Vejdirektoratet",
+    "country": "DK",
+    "published": "2026-09-16",
+    "deadline": "",
+    "description": "Vejdirektoratet har strategisk vurderet, at ydelsen bedst indkøbes på markedsvilkår fremfor at ansætte medarbejdere, idet opgaven kræver specialistkompetencer eller særlige faglige kompetencer, som ikke er til stede i Vejdirektoratet. Desuden kræver ydelsen droner eller flyvemaskine afhængigt af projektområderne størrelser.  \n\nVejdirektoratet vurderer at i fremtiden vil blive større behov for ydelserne og at de skal udføres med en højere frekvens, og i den nære fremtids står vi overfor at flere større projekter påbegyndes. Indgåelse af en rammeaftale, der dækker ydelserne vurderes som nødvendig. \n\nYdelserne der er omfattet af rammeaftale, består af 3 delaftaler med ydelser indenfor:  \n\n1.Gentagne ortofoto af Vejdirektoratets projekter under anlægsfasen inkl. diverse supplerende ydelser \n\n2.Punktskyer optaget med LIDAR inkl. samtidige ortofoto. \n\n3.Højopløselige ortofoto. inkl. diverse supplerende ydelser [CPV 71510000 Forundersøgelse af byggegrund]",
+    "value": "18000000 DKK",
+    "notice_type": "Resultater",
+    "language": "da",
+    "extra": {
+     "cpv": [
+      "71510000"
+     ],
+     "subtype": "Bekendtgørelse om indgåede kontrakter – det generelle direktiv, standardordningen",
+     "noticeId": "f7ec8ac9-ca46-4e30-ab6f-7066e78c135c"
+    },
+    "match": {
+     "tier": "combo",
+     "airborne": true,
+     "terms": [
+      "lidar",
+      "luftbar"
+     ],
+     "drone_only": true,
+     "negative_hints": [
+      "ortofoto"
+     ],
+     "in_title": false,
+     "score": 1
+    },
+    "portal_name": "udbud.dk (Denmark)"
+   }
+  ]
+ }
+}

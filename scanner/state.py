@@ -80,7 +80,12 @@ class State:
         tk = title_key(c.title)
         others = [k for k in self._titles.get(tk, []) if k != ident] if len(tk) > 15 else []
         if others:
-            return "possible_duplicate", f"same title as {others[0]} (re-tender or mirror? check)"
+            o = self.seen.get(others[0], {})
+            same_deadline = not c.deadline or not o.get("deadline") or c.deadline == o.get("deadline")
+            if o.get("portal") != c.portal and same_deadline:
+                return "seen", f"mirror of {others[0]}"
+            return "possible_duplicate", (f"same title as {others[0]} (deadline {o.get('deadline') or '?'} -> "
+                                          f"{c.deadline or '?'}): likely re-tender, check")
         return "new", ""
 
     def remember(self, c, today: dt.date):

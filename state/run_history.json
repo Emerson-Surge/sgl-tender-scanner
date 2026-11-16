@@ -820,5 +820,832 @@
    "closed": 1,
    "old": 2
   }
+ },
+ {
+  "date": "2026-11-16",
+  "ran_at_utc": "2026-11-16T13:55:50+00:00",
+  "summary": "SGL sweep 2026-11-16: portals 41 OK / 3 warn / 4 failed of 48; rows read 28494; NEW likely-airborne 1, geophysics-review 7, deadline changes 0, possible re-tenders 5, awards 1, already tracked 0, drone-only excluded 3",
+  "portals": {
+   "alertalicitacao": {
+    "name": "Alerta Licitação (Brazil)",
+    "region": "Americas",
+    "method": "Official API v1 (token in ALERTALICITACAO_TOKEN); website manual-only",
+    "url": "https://alertalicitacao.com.br/",
+    "status": "FAIL",
+    "rows_seen": 0,
+    "min_rows": 1,
+    "queries": 0,
+    "matched": 0,
+    "errors": [
+     "ALERTALICITACAO_TOKEN not set (token needs an Alerta Licitação account); website search is manual-only: results not served to plain/headless requests"
+    ],
+    "notes": [
+     "window from 2026-11-02"
+    ],
+    "seconds": 0.0
+   },
+   "baosem": {
+    "name": "BAOSEM (Algeria energy & mines bulletin)",
+    "region": "Africa/MENA",
+    "method": "Public search form HTML (subscriber fields hidden)",
+    "url": "https://www.baosem.com/appel-offre/last",
+    "status": "OK",
+    "rows_seen": 530,
+    "min_rows": 50,
+    "queries": 29,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "time budget hit (aéroporté p1)",
+     "time budget hit (aéromagnétique p1)",
+     "time budget hit (magnétométrie p1)",
+     "time budget hit (gravimétrie p1)",
+     "time budget hit (spectrométrie p1)",
+     "time budget hit (جيوفيزيائي p1)"
+    ],
+    "seconds": 109.4
+   },
+   "boamp": {
+    "name": "BOAMP (France)",
+    "region": "Europe",
+    "method": "Official Opendatasoft API on boamp.fr (export + full-text search)",
+    "url": "https://www.boamp.fr/pages/recherche/",
+    "status": "OK",
+    "rows_seen": 1450,
+    "min_rows": 500,
+    "queries": 17,
+    "matched": 1,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 55.6
+   },
+   "burkina": {
+    "name": "Burkina Faso Quotidien des marchés publics (DGCMEF)",
+    "region": "Africa",
+    "method": "Public daily bulletin PDFs (pdftotext, split per item)",
+    "url": "https://www.dgcmef.gov.bf/index.php/fr/appels-d-offre",
+    "status": "FAIL",
+    "rows_seen": 0,
+    "min_rows": 1,
+    "queries": 1,
+    "matched": 0,
+    "errors": [
+     "only 0 rows (expected >= 1): page layout may have changed or portal is empty"
+    ],
+    "notes": [
+     "window from 2026-11-02"
+    ],
+    "seconds": 1.8
+   },
+   "canadabuys": {
+    "name": "CanadaBuys (Canada)",
+    "region": "Americas",
+    "method": "Official open-data CSVs (keyless)",
+    "url": "https://canadabuys.canada.ca/en/tender-opportunities",
+    "status": "OK",
+    "rows_seen": 947,
+    "min_rows": 100,
+    "queries": 2,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 1.0
+   },
+   "comprasmx": {
+    "name": "ComprasMX (Mexico)",
+    "region": "Americas",
+    "method": "Public site 'Anuncios vigentes', headless render + paging",
+    "url": "https://comprasmx.buengobierno.gob.mx/sitiopublico/#/",
+    "status": "OK",
+    "rows_seen": 960,
+    "min_rows": 200,
+    "queries": 1,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 25.1
+   },
+   "contractsfinder": {
+    "name": "UK Contracts Finder",
+    "region": "Europe",
+    "method": "Official OCDS search API (keyless), stages=tender",
+    "url": "https://www.contractsfinder.service.gov.uk/Search",
+    "status": "WARN",
+    "rows_seen": 29,
+    "min_rows": 50,
+    "queries": 1,
+    "matched": 0,
+    "errors": [
+     "only 29 rows (expected >= 50): page layout may have changed or portal is empty"
+    ],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 2.7
+   },
+   "controlbid": {
+    "name": "ControlBid (Petronect mirror)",
+    "region": "Americas",
+    "method": "Public HTML listing + detail pages",
+    "url": "https://controlbid.com.br/licitacoes/",
+    "status": "OK",
+    "rows_seen": 308,
+    "min_rows": 100,
+    "queries": 1,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 0.8
+   },
+   "dgmarket": {
+    "name": "dgMarket (CPV listing)",
+    "region": "Global",
+    "method": "Public CPV listing, headless render (listing fields only)",
+    "url": "https://www2.dgmarket.com/NoticeList?cpv=71351710",
+    "status": "OK",
+    "rows_seen": 444,
+    "min_rows": 10,
+    "queries": 16,
+    "matched": 1,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 68.9
+   },
+   "doffin": {
+    "name": "Doffin (Norway)",
+    "region": "Europe",
+    "method": "Website's keyless JSON search API, 7-day chunks",
+    "url": "https://www.doffin.no/search",
+    "status": "OK",
+    "rows_seen": 322,
+    "min_rows": 150,
+    "queries": 11,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 5.0
+   },
+   "dou": {
+    "name": "Diário Oficial da União - Seção 3 (Brazil)",
+    "region": "Americas",
+    "method": "Public reader page, embedded jsonArray (one GET per weekday)",
+    "url": "https://www.in.gov.br/leiturajornal?secao=do3",
+    "status": "WARN",
+    "rows_seen": 4526,
+    "min_rows": 1000,
+    "queries": 3,
+    "matched": 0,
+    "errors": [
+     "2026-11-11: HTTP 502",
+     "2026-11-12: ReadTimeout: HTTPSConnectionPool(host='www.in.gov.br', port=443): Read timed out. (read timeout=40)"
+    ],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 48.1
+   },
+   "eprocng": {
+    "name": "Nigeria NipeX current opportunities (NNPC/upstream)",
+    "region": "Africa",
+    "method": "Public HTML cards",
+    "url": "https://nipexmain.nipex-ng.com/newsite/current-opportunities.php",
+    "status": "OK",
+    "rows_seen": 4,
+    "min_rows": 1,
+    "queries": 1,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 0.8
+   },
+   "eshdhs": {
+    "name": "Greece KIMDIS (ESHDHS)",
+    "region": "Europe",
+    "method": "Official open-data API (keyless), title + CPV search",
+    "url": "https://cerpp.eprocurement.gov.gr/upgkimdis/unprotected/home.xhtml",
+    "status": "OK",
+    "rows_seen": 9,
+    "min_rows": 1,
+    "queries": 13,
+    "matched": 3,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 5.0
+   },
+   "etendersie": {
+    "name": "eTenders (Ireland)",
+    "region": "Europe",
+    "method": "Public notice listing (HTML, 100/page)",
+    "url": "https://www.etenders.gov.ie/epps/quickSearchAction.do?searchType=cftFTS&latest=true",
+    "status": "OK",
+    "rows_seen": 100,
+    "min_rows": 60,
+    "queries": 1,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 1.3
+   },
+   "etenderza": {
+    "name": "eTenders South Africa",
+    "region": "Africa",
+    "method": "Public DataTable JSON (PaginatedTenderOpportunities)",
+    "url": "https://www.etenders.gov.za/Home/opportunities?id=1",
+    "status": "OK",
+    "rows_seen": 1000,
+    "min_rows": 100,
+    "queries": 2,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 3.4
+   },
+   "etimad": {
+    "name": "Etimad (Saudi Arabia)",
+    "region": "Middle East",
+    "method": "Public visitor search JSON (AllSupplierTendersForVisitorAsync)",
+    "url": "https://tenders.etimad.sa/Tender/AllTendersForVisitor",
+    "status": "OK",
+    "rows_seen": 576,
+    "min_rows": 100,
+    "queries": 24,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 82.2
+   },
+   "ezamowienia": {
+    "name": "e-Zamówienia BZP (Poland)",
+    "region": "Europe",
+    "method": "Board's keyless JSON search (subject/CPV/buyer queries)",
+    "url": "https://ezamowienia.gov.pl/mo-client-board/bzp/list",
+    "status": "OK",
+    "rows_seen": 70,
+    "min_rows": 3,
+    "queries": 33,
+    "matched": 1,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 12.1
+   },
+   "firsttender": {
+    "name": "FirstTender (India)",
+    "region": "Asia-Pacific",
+    "method": "Public keyword/buyer pages, schema.org JSON-LD",
+    "url": "https://www.firsttender.com/bids/geophysical-tenders.html",
+    "status": "OK",
+    "rows_seen": 170,
+    "min_rows": 15,
+    "queries": 29,
+    "matched": 4,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 7.4
+   },
+   "fts": {
+    "name": "UK Find a Tender",
+    "region": "Europe",
+    "method": "Official OCDS API (keyless), cursor pagination",
+    "url": "https://www.find-tender.service.gov.uk/Search",
+    "status": "OK",
+    "rows_seen": 1559,
+    "min_rows": 200,
+    "queries": 16,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "521 tender/planning notices kept of 1559 releases (awards dropped)"
+    ],
+    "seconds": 136.4
+   },
+   "gets": {
+    "name": "GETS (New Zealand)",
+    "region": "Asia-Pacific",
+    "method": "Public current-tenders list (all pages)",
+    "url": "https://www.gets.govt.nz/ExternalIndex.htm",
+    "status": "OK",
+    "rows_seen": 394,
+    "min_rows": 100,
+    "queries": 16,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 8.0
+   },
+   "ghaneps": {
+    "name": "Ghana GHANEPS current tenders",
+    "region": "Africa",
+    "method": "Public HTML list (ePPS displaytag)",
+    "url": "https://www.ghaneps.gov.gh/epps/quickSearchAction.do?searchSelect=6",
+    "status": "OK",
+    "rows_seen": 50,
+    "min_rows": 20,
+    "queries": 5,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 2.0
+   },
+   "hilma": {
+    "name": "Hilma (Finland)",
+    "region": "Europe",
+    "method": "Website's keyless search proxy (Azure Search OData), full window",
+    "url": "https://www.hankintailmoitukset.fi/fi/search",
+    "status": "OK",
+    "rows_seen": 483,
+    "min_rows": 150,
+    "queries": 1,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 2.8
+   },
+   "idb": {
+    "name": "IDB procurement notices",
+    "region": "Global/Donor",
+    "method": "Official CKAN datastore SQL API (keyless)",
+    "url": "https://www.iadb.org/en/how-we-can-work-together/procurement/procurement-projects/project-procurement",
+    "status": "OK",
+    "rows_seen": 30,
+    "min_rows": 5,
+    "queries": 1,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 0.3
+   },
+   "koneps": {
+    "name": "KONEPS (Korea, data.go.kr)",
+    "region": "Asia-Pacific",
+    "method": "Official data.go.kr Open API (key in KONEPS_API_KEY)",
+    "url": "https://www.g2b.go.kr/",
+    "status": "FAIL",
+    "rows_seen": 0,
+    "min_rows": 1,
+    "queries": 0,
+    "matched": 0,
+    "errors": [
+     "KONEPS_API_KEY not set"
+    ],
+    "notes": [
+     "window from 2026-11-02"
+    ],
+    "seconds": 0.0
+   },
+   "mercadopublico": {
+    "name": "Mercado Público (Chile)",
+    "region": "Americas",
+    "method": "Official API (ticket, optional) + public search page keyword render",
+    "url": "https://www.mercadopublico.cl/BuscarLicitacion",
+    "status": "OK",
+    "rows_seen": 17,
+    "min_rows": 1,
+    "queries": 12,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "MERCADOPUBLICO_TICKET not set: API leg skipped (free ticket at api.mercadopublico.cl); public keyword search only"
+    ],
+    "seconds": 29.1
+   },
+   "merx": {
+    "name": "MERX (Canada)",
+    "region": "Americas",
+    "method": "Public search page, keyword queries (plain HTML)",
+    "url": "https://www.merx.com/public/solicitations/open",
+    "status": "FAIL",
+    "rows_seen": 0,
+    "min_rows": 5,
+    "queries": 10,
+    "matched": 0,
+    "errors": [
+     "geophysical p1: HTTP 202",
+     "airborne survey p1: HTTP 202",
+     "aeromagnetic p1: HTTP 202",
+     "magnetic survey p1: HTTP 202",
+     "gravity survey p1: HTTP 202",
+     "radiometric p1: HTTP 202",
+     "electromagnetic survey p1: HTTP 202",
+     "LiDAR p1: HTTP 202",
+     "géophysique p1: HTTP 202",
+     "levé aéroporté p1: HTTP 202"
+    ],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 0.8
+   },
+   "nen": {
+    "name": "NEN (Czech Republic)",
+    "region": "Europe",
+    "method": "Headless render of public quick-search pages",
+    "url": "https://nen.nipez.cz/verejne-zakazky",
+    "status": "OK",
+    "rows_seen": 145,
+    "min_rows": 20,
+    "queries": 7,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 68.8
+   },
+   "nest": {
+    "name": "Tanzania NeST published tenders",
+    "region": "Africa",
+    "method": "Public page's GraphQL list query",
+    "url": "https://nest.go.tz/tenders/published-tenders",
+    "status": "OK",
+    "rows_seen": 258,
+    "min_rows": 30,
+    "queries": 2,
+    "matched": 1,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 2.6
+   },
+   "omantb": {
+    "name": "Oman Tender Board e-Tendering",
+    "region": "Middle East",
+    "method": "Public dashboard HTML (New Tenders, paged)",
+    "url": "https://etendering.tenderboard.gov.om/product/publicDash?viewFlag=NewTenders",
+    "status": "OK",
+    "rows_seen": 950,
+    "min_rows": 50,
+    "queries": 19,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "stopped at time budget after page 19"
+    ],
+    "seconds": 105.1
+   },
+   "pertamina": {
+    "name": "Pertamina procurement announcements",
+    "region": "Asia-Pacific",
+    "method": "Public announcement pages, headless render",
+    "url": "https://www.pertamina.com/en/pengadaan-umum",
+    "status": "OK",
+    "rows_seen": 12,
+    "min_rows": 4,
+    "queries": 2,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 17.3
+   },
+   "petronect": {
+    "name": "Petronect (Petrobras)",
+    "region": "Americas",
+    "method": "Public list page, headless render + on-page keyword search",
+    "url": "https://www.petronect.com.br/irj/go/km/docs/pccshrcontent/Site%20Content%20(Legacy)/Portal2018/pt/lista_licitacoes_publicadas_ft.html",
+    "status": "OK",
+    "rows_seen": 299,
+    "min_rows": 100,
+    "queries": 14,
+    "matched": 1,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 48.9
+   },
+   "philgeps": {
+    "name": "PhilGEPS (Philippines)",
+    "region": "Asia-Pacific",
+    "method": "Public open-opportunities keyword search (form)",
+    "url": "https://philgeps.gov.ph/Indexes/viewMoreOpenTenders",
+    "status": "OK",
+    "rows_seen": 204,
+    "min_rows": 10,
+    "queries": 25,
+    "matched": 1,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 30.3
+   },
+   "placsp": {
+    "name": "PLACSP (Spain)",
+    "region": "Europe",
+    "method": "Official ATOM syndication feed 643 (time-budgeted, newest first)",
+    "url": "https://contrataciondelestado.es/wps/portal/plataforma",
+    "status": "OK",
+    "rows_seen": 2741,
+    "min_rows": 500,
+    "queries": 6,
+    "matched": 1,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "time budget 600s reached after 6 pages; oldest entry read 2026-11-13T08:59:29.059+01:00"
+    ],
+    "seconds": 644.9
+   },
+   "pncp": {
+    "name": "PNCP (Brazil)",
+    "region": "Americas",
+    "method": "Official Consultation API v1 (keyless)",
+    "url": "https://pncp.gov.br/app/editais",
+    "status": "OK",
+    "rows_seen": 4131,
+    "min_rows": 200,
+    "queries": 91,
+    "matched": 1,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "Pregão - Eletrônico: time budget/rate limit; days not (fully) scanned: 2026-11-11..2026-11-12 (2 days)"
+    ],
+    "seconds": 421.4
+   },
+   "ppra": {
+    "name": "Pakistan PPRA e-PMS active tenders",
+    "region": "Asia/Middle East",
+    "method": "Public HTML list (paged)",
+    "url": "https://epms.ppra.gov.pk/public/tenders/active-tenders",
+    "status": "OK",
+    "rows_seen": 450,
+    "min_rows": 50,
+    "queries": 9,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 4.5
+   },
+   "qtenders": {
+    "name": "QTenders (Queensland)",
+    "region": "Asia-Pacific",
+    "method": "Public search, headless render (all open tenders)",
+    "url": "https://qtenders.hpw.qld.gov.au/search?keywords=&statuses=1",
+    "status": "OK",
+    "rows_seen": 110,
+    "min_rows": 40,
+    "queries": 6,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 51.3
+   },
+   "sam": {
+    "name": "SAM.gov (USA)",
+    "region": "Americas",
+    "method": "Official Opportunities API v2 (free key in SAM_API_KEY)",
+    "url": "https://sam.gov/search/?index=opp",
+    "status": "OK",
+    "rows_seen": 9,
+    "min_rows": 1,
+    "queries": 8,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-02"
+    ],
+    "seconds": 2.6
+   },
+   "secop": {
+    "name": "SECOP II (Colombia)",
+    "region": "Americas",
+    "method": "datos.gov.co Socrata SODA API (official open data, keyless)",
+    "url": "https://community.secop.gov.co/Public/Tendering/ContractNoticeManagement/Index",
+    "status": "OK",
+    "rows_seen": 97,
+    "min_rows": 1,
+    "queries": 1,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 7.0
+   },
+   "ted": {
+    "name": "TED (EU)",
+    "region": "Europe",
+    "method": "Official Search API v3 (keyless)",
+    "url": "https://ted.europa.eu/en/search",
+    "status": "OK",
+    "rows_seen": 86,
+    "min_rows": 1,
+    "queries": 2,
+    "matched": 2,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 1.4
+   },
+   "tenderimpulse": {
+    "name": "Tender Impulse",
+    "region": "Global",
+    "method": "Public keyword search (POST form) + country index page",
+    "url": "https://tenderimpulse.com/global-tenders",
+    "status": "OK",
+    "rows_seen": 194,
+    "min_rows": 10,
+    "queries": 30,
+    "matched": 22,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "first page only (more available) for: geophysical, Guadeloupe, Martinique, French Guiana"
+    ],
+    "seconds": 5.9
+   },
+   "tenderned": {
+    "name": "TenderNed (Netherlands)",
+    "region": "Europe",
+    "method": "Official public API (keyless), full window",
+    "url": "https://www.tenderned.nl/aankondigingen/overzicht",
+    "status": "OK",
+    "rows_seen": 430,
+    "min_rows": 200,
+    "queries": 5,
+    "matched": 1,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 2.4
+   },
+   "tendernews": {
+    "name": "TenderNews (India/global)",
+    "region": "Asia-Pacific",
+    "method": "Public keyword listing pages",
+    "url": "https://www.tendernews.com/tenders/latest-tender/geological-survey.html",
+    "status": "OK",
+    "rows_seen": 763,
+    "min_rows": 20,
+    "queries": 20,
+    "matched": 3,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 5.6
+   },
+   "tenderswa": {
+    "name": "Tenders WA (Western Australia)",
+    "region": "Asia-Pacific",
+    "method": "Public open-tender list",
+    "url": "https://www.tenders.wa.gov.au/watenders/index.do",
+    "status": "OK",
+    "rows_seen": 186,
+    "min_rows": 50,
+    "queries": 2,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 3.5
+   },
+   "udbud": {
+    "name": "udbud.dk (Denmark)",
+    "region": "Europe",
+    "method": "Website's keyless JSON search endpoint, all active notices",
+    "url": "https://udbud.dk/soeg",
+    "status": "OK",
+    "rows_seen": 2380,
+    "min_rows": 300,
+    "queries": 37,
+    "matched": 3,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 15.3
+   },
+   "ungm": {
+    "name": "UNGM (UN Global Marketplace)",
+    "region": "Global/Donor",
+    "method": "Public notice search (page's JSON POST)",
+    "url": "https://www.ungm.org/Public/Notice",
+    "status": "WARN",
+    "rows_seen": 2,
+    "min_rows": 10,
+    "queries": 37,
+    "matched": 0,
+    "errors": [
+     "only 2 rows (expected >= 10): page layout may have changed or portal is empty"
+    ],
+    "notes": [
+     "window from 2026-11-11"
+    ],
+    "seconds": 74.5
+   },
+   "utbod": {
+    "name": "Útboðsvefur / Útboð.is (Iceland)",
+    "region": "Europe",
+    "method": "Public open-tender listings (static HTML)",
+    "url": "https://utbodsvefur.is/",
+    "status": "OK",
+    "rows_seen": 77,
+    "min_rows": 20,
+    "queries": 2,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "utbod.is: no open tenders listed"
+    ],
+    "seconds": 1.9
+   },
+   "worldbank": {
+    "name": "World Bank procurement notices",
+    "region": "Global/Donor",
+    "method": "Search API v2 procnotices (keyless)",
+    "url": "https://projects.worldbank.org/en/projects-operations/procurement",
+    "status": "OK",
+    "rows_seen": 982,
+    "min_rows": 1,
+    "queries": 30,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "watch P506438: 0 notice(s) in window",
+     "watch P510607: 0 notice(s) in window"
+    ],
+    "seconds": 6.2
+   },
+   "zppa": {
+    "name": "Zambia ZPPA e-GP (latest tenders only)",
+    "region": "Africa",
+    "method": "Public home page 'Latest Tenders' block (full list is captcha-gated)",
+    "url": "https://eprocure.zppa.org.zm/epps/prepareCurrentOpportunities.do?currentType=cft",
+    "status": "OK",
+    "rows_seen": 10,
+    "min_rows": 5,
+    "queries": 1,
+    "matched": 0,
+    "errors": [],
+    "notes": [
+     "window from 2026-11-11",
+     "partial coverage: home page shows only the 10 newest tenders; full list is captcha-gated"
+    ],
+    "seconds": 2.2
+   }
+  },
+  "counts": {
+   "new": 1,
+   "review": 7,
+   "deadline_changed": 0,
+   "possible_duplicate": 5,
+   "awards": 1,
+   "drone_only": 3,
+   "in_tracker": 0,
+   "seen": 24,
+   "closed": 1,
+   "old": 3
+  }
  }
 ]

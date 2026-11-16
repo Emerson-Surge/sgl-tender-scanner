@@ -23,7 +23,7 @@ from pathlib import Path
 
 from . import portals as portals_pkg
 from .core import ROOT, PortalResult, RunContext
-from .matcher import match
+from .matcher import match, norm
 from .state import State
 
 DEFAULT_DAYS = 14
@@ -113,7 +113,7 @@ def main(argv=None):
                 buckets["closed"].append(d); continue
             if c.published and c.published < (since - dt.timedelta(days=1)).isoformat() and not c.deadline:
                 buckets["old"].append(d); continue
-            if "award" in (c.notice_type or "").lower() or "adjudic" in (c.notice_type or "").lower():
+            if any(w in norm(c.notice_type) for w in ("award", "adjudic", "resultat", "attribution", "homologa", "contract award")):
                 buckets["awards"].append(d); continue
             if m["drone_only"]:
                 buckets["drone_only"].append(d); continue
